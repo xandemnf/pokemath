@@ -15,7 +15,7 @@ window.onload = function() {
     pokeballImageLoaded = false,
     playerImageLoaded = false;
   var objectSizes = 20;
-  var speed = 100;
+  var speed = 50;
   var modifier = 100;
   var score = 0;
 
@@ -25,7 +25,8 @@ window.onload = function() {
     terrainImageLoaded = true;
     assetsLoaded();
   };
-  terrainImage.src = "https://www.dropbox.com/s/5e38o3e5mwej7gi/pokemon_terrain.jpg?raw=1";
+  /*terrainImage.src = "https://www.dropbox.com/s/5e38o3e5mwej7gi/pokemon_terrain.jpg?raw=1";*/
+  terrainImage.src = "img/cenario/pokemon_terrain.jpg";
 
   //house image
   var houseImage = new Image();
@@ -33,10 +34,12 @@ window.onload = function() {
     houseImageLoaded = true;
     assetsLoaded();
   };
-  houseImage.src = "https://www.dropbox.com/s/uagq684b5jbh5t5/house.png?raw=1";
+  //houseImage.src = "https://www.dropbox.com/s/uagq684b5jbh5t5/house.png?raw=1";
+  houseImage.src = "img/cenario/house.png";
 
   //main sound
-  var mainTheme = new Audio("https://www.dropbox.com/s/uru3oz9mxzpt5gx/main-theme.mp3?raw=1");
+  //var mainTheme = new Audio("https://www.dropbox.com/s/uru3oz9mxzpt5gx/main-theme.mp3?raw=1");
+  var mainTheme = new Audio("audio/main-theme.mp3");
   mainTheme.loop = true;
   mainTheme.volume = 0.5;
   mainTheme.play();

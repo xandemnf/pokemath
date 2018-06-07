@@ -17,6 +17,11 @@ strong {
   line-height: 1.5em;
 }
 
+#battle{
+  width: 600px;
+  margin: 0 auto;
+}
+
 .type {
   display: inline-block;
   height: 30px;
@@ -92,7 +97,7 @@ strong {
 }
 
 .stadium {
-  background: #7DCD79;
+  background: #F8F8F8;
 }
 .stadium > section {
   display: block;
@@ -107,15 +112,27 @@ strong {
   text-transform: capitalize;
 }
 .stadium > section .char img {
-  height: 150px;
+  /*height: 150px;*/
+  height: 70px;
 }
 .stadium > section .char .data {
-  background: #CCC;
-  width: 20vw;
-  padding: 15px 2%;
-  box-sizing: border-box;
-  top: 25px;
+    width: 17vw;
+    padding: 9px 2%;
+    box-sizing: border-box;
+    top: 0px;
+    border-radius: 8px;
+    background: #F8F8D8;
+    border: 6px solid #506860;
 }
+
+.stadium > section .char .data progress::-moz-progress-bar { 
+  background: blue; 
+}
+
+.stadium > section .char .data progress::-webkit-progress-value  { 
+  background: blue; 
+}
+
 .stadium > section .char .data progress {
   width: 100%;
 }
@@ -123,16 +140,17 @@ strong {
   text-align: right;
 }
 .stadium .enemy img {
-  right: 15vw;
+  right: 10vw;
 }
+
 .stadium .enemy .data {
-  left: 15vw;
+  left: 6vw;
 }
 .stadium .hero img {
-  left: 15vw;
+  left: 10vw;
 }
 .stadium .hero .data {
-  right: 15vw;
+  right: 6vw;
 }
 
 .attack-list {

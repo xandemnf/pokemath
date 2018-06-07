@@ -3,6 +3,15 @@
  * @version 1.0.0
  * @author Panagiotis Vourtsis <vourtsis_pan@hotmail.com>
  */
+#map{
+    margin: 0 auto;
+    display: table;
+}
+
+ #canvas{
+    width: 600px;
+ }
+
 window.onload = function() {
     "use strict";
 

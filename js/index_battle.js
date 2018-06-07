@@ -507,7 +507,7 @@ function characterChoice(){
         $('.stadium .hero progress').val(gameData.hero.hp.current);
 
         // let your hero roar
-        playSound(name);
+       // playSound(name);
 
         // move on to choosing an enemy
         gameData.step = 2;
@@ -541,7 +541,7 @@ function characterChoice(){
         $('.stadium .enemy progress').val(gameData.enemy.hp.current);
 
         // the enemy whimpers in fear
-        playSound(name);
+        //playSound(name);
 
         // update step to attack phase and bind click events
         gameData.step = 3;
