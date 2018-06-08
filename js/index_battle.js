@@ -741,7 +741,7 @@ function defend(that){
     // ding dong the hero's dead
 
     clearModal();
-    $('.modal-in header').append('<h1>Você perdeu/h1><span class="close">x</span>');
+    $('.modal-in header').append('<h1>Você perdeu </h1><span class="close">x</span>');
     $('.modal-in section').append('<p>Não desanime!!');
     $('.modal-out').slideDown('400');
     $('#battle').hide();
