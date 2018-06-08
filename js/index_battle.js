@@ -49,7 +49,7 @@ function buildVars(){
 
 
 
-  typeSprite = 'http://orig15.deviantart.net/24d8/f/2011/057/3/5/ge___energy_type_icons_by_aschefield101-d3agp02.png';
+  typeSprite = 'img/ge___energy_type_icons_by_aschefield101-d3agp02.png';
   types = ['bug', 'dark', 'dragon', 'electric', 'fairy', 'fighting', 'fire', 'flying', 'ghost', 'grass', 'ground', 'ice', 'normal', 'poison', 'psychic', 'rock', 'steel', 'water'];
 
 
@@ -83,9 +83,12 @@ function buildVars(){
       weakness: ['fighting'],
       resistance: ['steel'],
       img: {
-        default: "http://vignette2.wikia.nocookie.net/all-anime-characters/images/7/7b/Cute_pikachu_with_hat_by_mlpochea-d63xlom.png/revision/latest?cb=20150108111832",
-        front: "http://rs1263.pbsrc.com/albums/ii631/Pokemon-Vampire-Knight-lover/pikachu_.gif~c200",
-        back: "http://vignette4.wikia.nocookie.net/pokemon/images/5/5b/Pikachu_Back_XY.gif/revision/latest?cb=20141009080948"
+        //default: "http://vignette2.wikia.nocookie.net/all-anime-characters/images/7/7b/Cute_pikachu_with_hat_by_mlpochea-d63xlom.png/revision/latest?cb=20150108111832",
+        default: "img/pokemon/Cute_pikachu_with_hat_by_mlpochea-d63xlom.png",
+        //front: "http://rs1263.pbsrc.com/albums/ii631/Pokemon-Vampire-Knight-lover/pikachu_.gif~c200",
+        front: "img/pokemon/pikachu_.gif_c200",
+        //back: "http://vignette4.wikia.nocookie.net/pokemon/images/5/5b/Pikachu_Back_XY.gif/revision/latest?cb=20141009080948"
+        back: "img/pokemon/Pikachu_Back_XY.gif"
       },
       hp: {
         current: 500,
@@ -132,9 +135,12 @@ function buildVars(){
       weakness: ['water'],
       resistance: ['grass'],
       img: {
-        default: "http://img3.wikia.nocookie.net/__cb20150330015216/pokemon/images/f/f5/004Charmander_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png",
-        front: "http://rs772.pbsrc.com/albums/yy9/HybridRainbow88/Charmander.gif~c200",
-        back: "http://vignette1.wikia.nocookie.net/pokemon/images/2/23/Charmander_Back_XY.gif/revision/latest?cb=20141009063457"
+        default: "img/pokemon/004Charmander_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png",
+        //default: "http://img3.wikia.nocookie.net/__cb20150330015216/pokemon/images/f/f5/004Charmander_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png",
+        front: "img/pokemon/Charmander.gif_c200",
+        //front: "http://rs772.pbsrc.com/albums/yy9/HybridRainbow88/Charmander.gif~c200",
+        back: "img/pokemon/Charmander_Back_XY.gif"
+        //back: "http://vignette1.wikia.nocookie.net/pokemon/images/2/23/Charmander_Back_XY.gif/revision/latest?cb=20141009063457"
       },
       hp: {
         current: 500,
@@ -181,9 +187,12 @@ function buildVars(){
       weakness: ['electric','grass'],
       resistance: ['normal','fire'],
       img: {
-        default: "http://vignette3.wikia.nocookie.net/ssbb/images/7/79/Squirtle_Rojo_Fuego_y_Verde_Hoja.png/revision/latest?cb=20130907041944&path-prefix=es",
-        front: "https://66.media.tumblr.com/ddd22fe10a485ed56a46d958c058a970/tumblr_n9lnpepqkW1scncwdo1_500.gif",
-        back: "http://vignette3.wikia.nocookie.net/pokemon/images/d/d8/Squirtle_XY_Back_Sprite.gif/revision/latest?cb=20141031154426"
+        default: "img/pokemon/Squirtle_Rojo_Fuego_y_Verde_Hoja.png",
+        //default: "http://vignette3.wikia.nocookie.net/ssbb/images/7/79/Squirtle_Rojo_Fuego_y_Verde_Hoja.png/revision/latest?cb=20130907041944&path-prefix=es",
+        front: "img/pokemon/tumblr_n9lnpepqkW1scncwdo1_500.gif",
+        //front: "https://66.media.tumblr.com/ddd22fe10a485ed56a46d958c058a970/tumblr_n9lnpepqkW1scncwdo1_500.gif",
+        back: "img/pokemon/Squirtle_XY_Back_Sprite.gif"
+        //back: "http://vignette3.wikia.nocookie.net/pokemon/images/d/d8/Squirtle_XY_Back_Sprite.gif/revision/latest?cb=20141031154426"
       },
       hp: {
         current: 500,
@@ -230,12 +239,16 @@ function buildVars(){
       weakness: ['fire'],
       resistance: ['water','psychic'],
       img: {
-        default: "http://vignette4.wikia.nocookie.net/pokemon/images/8/81/001Bulbasaur_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png/revision/latest?cb=20150105223818",
-        front: "https://media.giphy.com/media/iIWW4BM6nNWTu/giphy.gif",
-        //front: "img/pokemon/bulbasaur.png",
-        back: "http://rs425.pbsrc.com/albums/pp335/Grasaldrea/ShinyBulbasauranimatedback.gif~c200",
-        deranged: "http://rs522.pbsrc.com/albums/w348/Richtoon18/b3617568f13aa750c57eacc45d0b2da7.gif~c200",
-        sleep: "https://31.media.tumblr.com/4dd7682db26ac687ef81f0dd06794652/tumblr_msesq5uAIk1r93jsro1_500.gif"
+        default: "img/pokemon/001Bulbasaur_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png",
+        //default: "http://vignette4.wikia.nocookie.net/pokemon/images/8/81/001Bulbasaur_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png/revision/latest?cb=20150105223818",
+        front: "img/pokemon/giphy.webp",
+        //front: "https://media.giphy.com/media/iIWW4BM6nNWTu/giphy.gif",
+        back: "img/pokemon/ShinyBulbasauranimatedback.gif_c200",
+        //back: "http://rs425.pbsrc.com/albums/pp335/Grasaldrea/ShinyBulbasauranimatedback.gif~c200",
+        deranged: "img/pokemon/b3617568f13aa750c57eacc45d0b2da7.gif_c200",
+        //deranged: "http://rs522.pbsrc.com/albums/w348/Richtoon18/b3617568f13aa750c57eacc45d0b2da7.gif~c200",
+        sleep: "img/pokemon/tumblr_msesq5uAIk1r93jsro1_500.gif"
+        //sleep: "https://31.media.tumblr.com/4dd7682db26ac687ef81f0dd06794652/tumblr_msesq5uAIk1r93jsro1_500.gif"
       },
       hp: {
         current: 500,
@@ -282,9 +295,12 @@ function buildVars(){
       weakness: ['psychic','electric'],
       resistance: [],
       img: {
-        default: "http://clipart.toonarific.com/data/media/11/pokemon066.gif",
-        front: "http://graphics.tppcrpg.net/xy/normal/066F.gif",
-        back:  "http://pokeunlock.com/wp-content/uploads/2015/01/machop-2.gif"
+        default: "img/pokemon/pokemon066.gif",
+        //default: "http://clipart.toonarific.com/data/media/11/pokemon066.gif",
+        front: "img/pokemon/066F.gif",
+        //front: "http://graphics.tppcrpg.net/xy/normal/066F.gif",
+        back:  "img/pokemon/Spr_b_6x_066.png"
+        //back:  "http://pokeunlock.com/wp-content/uploads/2015/01/machop-2.gif"
       },
       hp: {
         current: 500,
@@ -357,14 +373,31 @@ function randomNum(max, min){
 function populateChar(container,character){
   // which img
   var facing = 'front';
+  var classe = '';
   if(character === 'hero'){
     // we see the back of our hero
     // a real hero faces danger
     facing = 'back';
   }
 
+  if(gameData[character].name == 'machop' && facing == 'back'){
+    classe = 'machop_back';
+  }
+
   // build the character
-  container.append('<section class="char"><img src="'+gameData[character].img[facing]+'" alt="'+gameData[character].name+'"><aside class="data"><h2>'+gameData[character].name+'</h2><div><progress max="'+gameData[character].hp.total+'"></progress><p><span>'+gameData[character].hp.current+'</span>/'+gameData[character].hp.total+'</p></div></aside></section>');
+  container.append('<section class="char col-sm-12">'
+    +'<div class="col-sm-6">'
+    +'<img class="'+classe+'" src="'+gameData[character].img[facing]+'" alt="'+gameData[character].name+'">'
+    +'</div>'
+    +'<div class="col-sm-6">'
+    +'<aside class="data"><h2>'+gameData[character].name+'</h2>'
+    +'<div>'
+    +'<progress max="'+gameData[character].hp.total+'"></progress>'
+    +'<p><span>'+gameData[character].hp.current+'</span>/'+gameData[character].hp.total+'</p>'
+    +'</div>'
+    +'</div>'
+    +'</aside>'
+    +'</section>');
 }
 
 
@@ -608,8 +641,8 @@ function attackEnemy(that, callback){
       // Enemy is dead
 
       clearModal();
-    $('.modal-in header').append('<h1>You Enemy is slain</h1><span class="close">x</span>');
-    $('.modal-in section').append('<p>Congratulations! Dare you try again?');
+    $('.modal-in header').append('<h1>Você Ganhou</h1><span class="close">x</span>');
+    $('.modal-in section').append('<p>Parabéns!');
     $('.modal-out').slideDown('400');
     $('#battle').hide();
     $('#canvas').show();
@@ -708,8 +741,8 @@ function defend(that){
     // ding dong the hero's dead
 
     clearModal();
-    $('.modal-in header').append('<h1>Your Hero has died</h1><span class="close">x</span>');
-    $('.modal-in section').append('<p>You lose, good day!');
+    $('.modal-in header').append('<h1>Você perdeu/h1><span class="close">x</span>');
+    $('.modal-in section').append('<p>Não desanime!!');
     $('.modal-out').slideDown('400');
     $('#battle').hide();
     $('#canvas').show();

@@ -42,10 +42,11 @@ window.onload = function() {
   var mainTheme = new Audio("audio/main-theme.mp3");
   mainTheme.loop = true;
   mainTheme.volume = 0.5;
-  mainTheme.play();
+ // mainTheme.play();
 
   //pokeball-selection
-  var pokePick = new Audio("https://www.dropbox.com/s/weemcqn1wlxelll/pickup.mp3?raw=1");
+  //var pokePick = new Audio("https://www.dropbox.com/s/weemcqn1wlxelll/pickup.mp3?raw=1");
+  var pokePick = new Audio("audio/pickup.mp3");
   pokePick.volume = 0.8;
 
   //player image
@@ -54,7 +55,8 @@ window.onload = function() {
     pokeballImageLoaded = true;
     assetsLoaded();
   };
-  playerImage.src = "https://www.dropbox.com/s/wm91kb7t7j76d0d/player.png?raw=1";
+  //playerImage.src = "https://www.dropbox.com/s/wm91kb7t7j76d0d/player.png?raw=1";
+  playerImage.src = "img/personagens/player.png";
 
   //pokeball image
   var pokeballImage = new Image();
@@ -62,7 +64,8 @@ window.onload = function() {
     playerImageLoaded = true;
     assetsLoaded();
   };
-  pokeballImage.src = "https://www.dropbox.com/s/biqj124larffqk9/pokeball.png?raw=1";
+  //pokeballImage.src = "https://www.dropbox.com/s/biqj124larffqk9/pokeball.png?raw=1";
+  pokeballImage.src = "img/pokeball.png";
 
   /**
    * It will hold all the pockeball data like x and y axis position

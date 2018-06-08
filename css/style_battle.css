@@ -108,15 +108,24 @@ strong {
   position: relative;
 }
 .stadium > section .char > * {
-  position: absolute;
+  /*position: absolute;*/
   text-transform: capitalize;
+  display: inline-block;
 }
+
+.stadium > .enemy .char > * {
+  /*position: absolute;*/
+  text-transform: capitalize;
+  display: inline-block;
+  float: right;
+}
+
 .stadium > section .char img {
   /*height: 150px;*/
-  height: 70px;
+  height: 80px;
 }
 .stadium > section .char .data {
-    width: 17vw;
+    width: 250px;
     padding: 9px 2%;
     box-sizing: border-box;
     top: 0px;
@@ -126,11 +135,11 @@ strong {
 }
 
 .stadium > section .char .data progress::-moz-progress-bar { 
-  background: blue; 
+  background-color: yellow !important; 
 }
 
 .stadium > section .char .data progress::-webkit-progress-value  { 
-  background: blue; 
+  background-color: yellow !important; 
 }
 
 .stadium > section .char .data progress {
@@ -140,14 +149,16 @@ strong {
   text-align: right;
 }
 .stadium .enemy img {
-  right: 10vw;
+  right: 85px;
+  margin-left: 50px;
 }
 
 .stadium .enemy .data {
   left: 6vw;
 }
 .stadium .hero img {
-  left: 10vw;
+  left: 115px;
+  margin-left: 70px;
 }
 .stadium .hero .data {
   right: 6vw;
@@ -219,4 +230,10 @@ strong {
 .modal-out .modal-in section {
   box-sizing: border-box;
   padding: 25px 3%;
+}
+
+.machop_back{
+    height: 300px !important;
+    bottom: -15px;
+    left: 8px !important;
 }
