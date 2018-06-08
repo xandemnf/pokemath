@@ -3,6 +3,8 @@
  * @version 1.0.0
  * @author Panagiotis Vourtsis <vourtsis_pan@hotmail.com>
  */
+
+ var DIRECAO_ATUAL = 'nada';
 window.onload = function() {
   "use strict";
 
@@ -140,7 +142,6 @@ window.onload = function() {
     }
   };
   player.move = function(direction) {
-
     /**
      * A temporary object to hold the current x, y so if there is a collision with the new coordinates to fallback here
      */
@@ -231,6 +232,7 @@ window.onload = function() {
     }
 
     update();
+
   };
 
   /**
@@ -326,4 +328,69 @@ window.onload = function() {
     else if (e.keyCode == "39") player.move("right");
     else if (e.keyCode == "40") player.move("down");
   };
+
+  // MOVE ON TOCH
+  $('#map')[0].addEventListener("touchstart", startTouch, false);
+  $('#map')[0].addEventListener("touchmove", moveTouch, false);
+     
+    // Swipe Up / Down / Left / Right
+    var initialX = null;
+    var initialY = null;
+     
+    function startTouch(e) {
+      console.log('chegou start');
+      initialX = e.touches[0].clientX;
+      initialY = e.touches[0].clientY;
+    };
+     
+    function moveTouch(e) {
+      console.log('chegou move');
+      if (initialX === null) {
+        return;
+      }
+     
+      if (initialY === null) {
+        return;
+      }
+     
+      var currentX = e.touches[0].clientX;
+      var currentY = e.touches[0].clientY;
+     
+      var diffX = initialX - currentX;
+      var diffY = initialY - currentY;
+     
+      if (Math.abs(diffX) > Math.abs(diffY)) {
+        // sliding horizontally
+        if (diffX > 0) {
+          // swiped left
+          player.move("left");
+          console.log("swiped left");
+
+        } else {
+          // swiped right
+          console.log("swiped right");
+          player.move("right");
+        }  
+      } else {
+        // sliding vertically
+        if (diffY > 0) {
+          // swiped up
+          console.log("swiped up");
+          player.move("up");
+        } else {
+          // swiped down
+          console.log("swiped down");
+          player.move("down");
+        }  
+      }
+     
+      initialX = null;
+      initialY = null;
+       
+      e.preventDefault();
+  };
+
+
 };
+
+ 

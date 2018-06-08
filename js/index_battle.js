@@ -381,7 +381,7 @@ function populateChar(container,character){
   }
 
   if(gameData[character].name == 'machop' && facing == 'back'){
-    classe = 'machop_back';
+    //classe = 'machop_back';
   }
 
   // build the character
