@@ -385,11 +385,11 @@ function populateChar(container,character){
   }
 
   // build the character
-  container.append('<section class="char col-sm-12">'
-    +'<div class="col-sm-6">'
+  container.append('<section class="char col-12">'
+    +'<div class="col-6">'
     +'<img class="'+classe+'" src="'+gameData[character].img[facing]+'" alt="'+gameData[character].name+'">'
     +'</div>'
-    +'<div class="col-sm-6">'
+    +'<div class="col-6">'
     +'<aside class="data"><h2>'+gameData[character].name+'</h2>'
     +'<div>'
     +'<progress max="'+gameData[character].hp.total+'"></progress>'
