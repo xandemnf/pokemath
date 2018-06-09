@@ -78,6 +78,7 @@ function buildVars(){
   // available characters
   characters = [
     {
+      index: 0,
       name: "pikachu",
       type: 'electric',
       weakness: ['fighting'],
@@ -130,6 +131,7 @@ function buildVars(){
       ]
     },
     {
+      index: 1,
       name: "charmander",
       type: 'fire',
       weakness: ['water'],
@@ -182,6 +184,7 @@ function buildVars(){
       ]
     },
     {
+      index: 2,
       name: "squirtle",
       type: 'water',
       weakness: ['electric','grass'],
@@ -234,6 +237,7 @@ function buildVars(){
       ]
     },
     {
+      index: 3,
       name: "bulbasaur",
       type: 'grass',
       weakness: ['fire'],
@@ -290,6 +294,7 @@ function buildVars(){
       ]
     },
     {
+      index: 4,
       name: "machop",
       type: 'fighting',
       weakness: ['psychic','electric'],
@@ -385,6 +390,7 @@ function populateChar(container,character){
   }
 
   // build the character
+  //container.empty();
   container.append('<section class="char col-12">'
     +'<div class="col-6">'
     +'<img class="'+classe+'" src="'+gameData[character].img[facing]+'" alt="'+gameData[character].name+'">'
@@ -477,7 +483,7 @@ function resetGame(){
   $('.attack-list li').unbind('click');
   $('.attack-list').empty();
   $('.stadium .enemy').css({'padding':'0'});
-  $('.instructions p').text('Choose your hero');
+  //$('.instructions p').text('Choose your hero');
 
   // set & start the opening game music
   $('audio.music').attr('src',music["opening"]);
@@ -485,75 +491,76 @@ function resetGame(){
 
   // empty characters
   $('.characters').empty();
-  $('.characters').removeClass('hidden');
+  //$('.characters').removeClass('hidden');
 
-  for(var i in characters){
+  /*for(var i in characters){
     // build the character list
     $(".characters").append('<div class="char-container"><img src="'+characters[i].img.default+'" alt="'+characters[i].name+'"><h2>'+characters[i].name+'</h2><span class="type '+characters[i].type+'"></span></div>')
-  }
-  characterChoice();
+  }*/
+  //characterChoice();
+
+  $('.attack-list').addClass('hidden');
+  $('.voltar').addClass('hidden');
+  $('.opcoes-list').removeClass('hidden');
+  pokemonPlayerAtual();
+  enemyFind();
+  opcoesPlayer();
 }
 resetGame();
 $('.logo').click(function(){resetGame();});
 
 
+function pokemonPlayerAtual(){
+  
+  gameData.hero = characters[atual];
+  
+  // build my hero
+  populateChar($('.stadium .hero'), 'hero');
+  // variavel atual esta no common.js
+  
+  $('.attack-list').empty();
+  for(var i in gameData.hero.attacks){
+    // populate attack list
+     $('.attack-list').append('<li>'
+    +'<p class="attack-name"><strong>'
+    +gameData.hero.attacks[i].name
+    +'</strong></p><p class="attack-count"><small><span>'
+    +gameData.hero.attacks[i].avail.remaining+'</span>/'
+    +gameData.hero.attacks[i].avail.total+'</small>'
+    +'</p></li>');
+  }
+
+  $('.attack-list').addClass('disabled');
+
+  $('.characters').addClass('hidden');
 
 
+  // update instructions
+  //$('.instructions p').text('Choose your enemy');
+  // set health bar value
+  $('.stadium .hero progress').val(gameData.hero.hp.current);
+}
 
-/////////////////////////////////////////////
-// CHARACTER CHOICE
-/////////////////////////////////////////////
-function characterChoice(){
-  $('.characters .char-container').click(function(){
-    // you have chosen a character
+function opcoesPlayer(){
+  $('.opcoes-list').empty();
+  $('.opcoes-list').append('<li id="opcao_ataque">Ataque</li>');
+  $('.opcoes-list').append('<li id="opcao_pegar">Pegar</li>');
+  $('.opcoes-list').append('<li id="opcao_fugir">Fugir</li>');
+  $('.opcoes-list').append('<li id="opcao_pokemons">Pokemons</li>');
+  opcoesPlayerClick();
 
-    // your chosen character name
-    var name = $(this).children('h2').text().toLowerCase();
+}
 
-    switch(gameData.step){
-      // switch for the current step in the game
-
-      case 1:
-        // step 1: choose your hero
-        for(var i in characters){
-          if(characters[i].name === name){
-            // find and save your chosen hero's data
-            gameData.hero = characters[i];
-          }
-        }
-
-        // remove the character from the available list
-        var char = $(this).remove();
-        // build my hero
-        populateChar($('.stadium .hero'), 'hero');
-
-        for(var i in gameData.hero.attacks){
-          // populate attack list
-          $('.attack-list').append('<li><p class="attack-name"><strong>'+gameData.hero.attacks[i].name+'</strong></p><p class="attack-count"><small><span>'+gameData.hero.attacks[i].avail.remaining+'</span>/'+gameData.hero.attacks[i].avail.total+'</small></p></li>');
-        }
-
-        $('.attack-list').addClass('disabled');
-
-        // update instructions
-        $('.instructions p').text('Choose your enemy');
-        // set health bar value
-        $('.stadium .hero progress').val(gameData.hero.hp.current);
-
-        // let your hero roar
-       // playSound(name);
-
-        // move on to choosing an enemy
-        gameData.step = 2;
-        break;
-
-      case 2:
-        // step 2: choose your enemy
+function enemyFind(){
+        var i = pokemonEncontrado;
+        gameData.enemy = characters[i];
+        /*// step 2: choose your enemy
         for(var i in characters){
           if(characters[i].name === name){
             // find and save the enemy data
             gameData.enemy = characters[i];
           }
-        }
+        }*/
 
         // remove the enemy from the list
         var char = $(this).remove();
@@ -579,8 +586,76 @@ function characterChoice(){
         // update step to attack phase and bind click events
         gameData.step = 3;
         attackList();
-        break;
-    }
+}
+
+function pokemonChoice(){
+  $('.characters').removeClass('hidden');
+  $('.characters').empty();
+  for(var i in characters){
+    // build the character list
+    $(".characters").append('<li id="pokemon_'+characters[i].name+'" class="char-container">'
+      +'<img src="'+characters[i].img.default+'" alt="'+characters[i].name+'">'
+      +'<h2>'+characters[i].name+'</h2>'
+      +'<span class="type '+characters[i].type+'"></span></lis>')
+  }
+
+  characterChoice();
+}
+
+/////////////////////////////////////////////
+// CHARACTER CHOICE
+/////////////////////////////////////////////
+function characterChoice(){
+  $('.characters .char-container').click(function(){
+    // you have chosen a character
+    console.log('chegou choice');
+    // your chosen character name
+    var name = $(this).children('h2').text().toLowerCase();
+
+        // step 1: choose your hero
+        for(var i in characters){
+          if(characters[i].name === name){
+            // find and save your chosen hero's data
+            gameData.hero = characters[i];
+          }
+        }
+        $('.stadium .hero').empty();
+        // remove the character from the available list
+        var char = $(this).remove();
+        // build my hero
+        populateChar($('.stadium .hero'), 'hero');
+
+        $('.attack-list').empty();
+        for(var i in gameData.hero.attacks){
+          // populate attack list
+           $('.attack-list').append('<li>'
+          +'<p class="attack-name"><strong>'
+          +gameData.hero.attacks[i].name
+          +'</strong></p><p class="attack-count"><small><span>'
+          +gameData.hero.attacks[i].avail.remaining+'</span>/'
+          +gameData.hero.attacks[i].avail.total+'</small>'
+          +'</p></li>');
+        }
+
+        // OPCOES
+
+        $('.characters').addClass('hidden');
+        $('.voltar').addClass('hidden');
+        $('.opcoes-list').removeClass('hidden');
+
+
+        // update instructions
+        //$('.instructions p').text('Choose your enemy');
+        // set health bar value
+        $('.stadium .hero progress').val(gameData.hero.hp.current);
+
+        // let your hero roar
+       // playSound(name);
+
+        // move on to choosing an enemy
+        gameData.step = 3;
+        attackList();
+        //$('.characters .char-container').trigger('click');
   });
 }
 
@@ -619,7 +694,7 @@ function attackEnemy(that, callback){
     );
     $('.hero .char img').animate(
       {
-        'margin-left': '30px',
+        'margin-left': '70px',
         'margin-top': '-10px'
       },
       50,
@@ -627,7 +702,7 @@ function attackEnemy(that, callback){
     );
     $('.hero .char img').animate(
       {
-        'margin-left': '0px',
+        'margin-left': '70px',
         'margin-top': '0px'
       },
       50,
@@ -641,12 +716,11 @@ function attackEnemy(that, callback){
       // Enemy is dead
 
       clearModal();
-    $('.modal-in header').append('<h1>Você Ganhou</h1><span class="close">x</span>');
-    $('.modal-in section').append('<p>Parabéns!');
-    $('.modal-out').slideDown('400');
-    $('#battle').hide();
-    $('#canvas').show();
+      $('.modal-in header').append('<h1>Você Ganhou </h1><span class="close">x</span>');
+      $('.modal-in section').append('<p>Parabéns!</p>');
+      $('.modal-out').slideDown('400');
       modalControls();
+      renderMap();
 
       gameData.enemy.hp.current = 0;
       // clear the stadium of the dead
@@ -657,8 +731,6 @@ function attackEnemy(that, callback){
 
       gameData.enemy = {};
 
-      // choose enemy
-      gameData.step = 2;
       // unbind click for reset
       $('.attack-list li').unbind('click');
     }else{
@@ -692,6 +764,10 @@ function attackEnemy(that, callback){
         // now defend that attack
         defend(that);
       }, 1000);
+
+      $('.attack-list').addClass('hidden');
+      $('.voltar').addClass('hidden');
+      $('.opcoes-list').removeClass('hidden');
     }
   }
 }
@@ -741,16 +817,22 @@ function defend(that){
     // ding dong the hero's dead
 
     clearModal();
-    $('.modal-in header').append('<h1>Você perdeu </h1><span class="close">x</span>');
-    $('.modal-in section').append('<p>Não desanime!!');
+
+    $('.modal-in header').append('<h1>'+ gameData.hero.name +' morreu! :( </h1><span class="close">x</span>');
+    $('.modal-in section').append('<p>Não desanime!! Escolha outro pokemon e continue lutando!');
     $('.modal-out').slideDown('400');
-    $('#battle').hide();
-    $('#canvas').show();
-    modalControls()
-
+    //$('#battle').hide();
+    //$('#canvas').show();
+    modalControls();
+   // $('#pokemon_'+gameData.hero.name).remove(); 
+    $('.attack-list').addClass('hidden');
+    $('.voltar').addClass('hidden');
+    $('.opcoes-list').removeClass('hidden');
+    characters.splice(gameData.hero.index, 1); //Remove o pokemon da lista
     gameData.hero.hp.current = 0;
+    pokemonChoice();
 
-    resetGame();
+    //resetGame();
   }else{
     // the hero lives
 
@@ -797,7 +879,7 @@ function defend(that){
 function attackList(){
   // attack instantiation
   $('.attack-list').removeClass('disabled');
-
+  console.log('chegou ataque' + gameData.step);
   $('.attack-list li').click(function(){
     // attack choice is clicked
     var doAttack = 1;
@@ -842,3 +924,49 @@ function clearModal(){
   $('.modal-in footer').empty();
   setHP();
 }
+
+function opcoesPlayerClick(){
+$('.opcoes-list li').click(function(){
+    // attack choice is clicked
+    var opcao = $(this).attr('id');
+    console.log('chegou no click das opcoes');
+    switch(opcao){
+      case 'opcao_ataque':
+        $('.opcoes-list').addClass('hidden');
+        $('.attack-list').removeClass('hidden');
+        $('.voltar').removeClass('hidden');
+      break;
+      case 'opcao_pokemons':
+        $('.opcoes-list').addClass('hidden');
+        $('.attack-list').addClass('hidden');
+        $('.voltar').removeClass('hidden');
+        pokemonChoice();
+      break;
+      case 'opcao_fugir':
+        clearModal();
+        $('.modal-in header').append('<h1>Você fugiu da batalha!</h1><span class="close">x</span>');
+        $('.modal-in section').append('<p>Não desanime!! Na próxima você consegue!');
+        $('.modal-out').slideDown('400');
+        modalControls();
+        renderMap();
+      break;
+      case 'opcao_pegar':
+      break;
+    }
+    
+  });
+$('.voltar').click(function(){
+   $('.opcoes-list').removeClass('hidden');
+    $('.attack-list').addClass('hidden');
+    $('.characters').addClass('hidden');
+    $('.voltar').addClass('hidden');
+});
+
+}
+
+function renderMap(){
+      $('#battle').hide();
+      $('#canvas').show();
+      pause_map = 0;
+      inimigoAudio.pause();
+  }

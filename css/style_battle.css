@@ -1,7 +1,7 @@
 body {
   font-family: 'helvetica neue', helvetica, arial, sans-serif;
   font-size: 16px;
-  padding-top: 30px;
+  overflow: hidden;
 }
 
 header {
@@ -65,6 +65,26 @@ strong {
   justify-content: space-around;
   transition: visibility 0.3s ease, opacity 0.3s ease, height 0.3s ease;
 }
+
+.voltar li {
+  width: 100%;
+  text-align: center;
+  padding: 5px 0;
+  box-sizing: border-box;
+  border: 1px solid #667;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.voltar li:hover {
+  background: #EEE;
+}
+
+.voltar.hidden {
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+}
+
 .characters.hidden {
   visibility: hidden;
   opacity: 0;
@@ -102,6 +122,7 @@ strong {
 .stadium > section {
   display: block;
   box-sizing: border-box;
+  padding: 0px !important;
 }
 .stadium > section .char {
   height: 175px;
@@ -112,7 +133,9 @@ strong {
   text-transform: capitalize;
   display: inline-block;
 }
-
+.stadium > .enemy{
+  padding-top: 25px !important;
+}
 .stadium > .enemy .char > * {
   /*position: absolute;*/
   text-transform: capitalize;
@@ -172,6 +195,13 @@ strong {
   transtion: opacity 0.3s ease;
   text-transform: capitalize;
 }
+
+.attack-list.hidden {
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+}
+
 .attack-list.disabled {
   opacity: 0.5;
   position: relative;
@@ -183,13 +213,49 @@ strong {
   text-align: center;
   padding: 25px 0;
   box-sizing: border-box;
-  border: 1px solid #666;
+  border: 1px solid #667;
   cursor: pointer;
   transition: background 0.3s ease;
 }
 .attack-list li:hover {
   background: #EEE;
 }
+
+.opcoes-list {
+  display: flex;
+  flex-wrap: wrap;
+  background: #FFFAFA;
+  position: initial;
+  transtion: opacity 0.3s ease;
+  text-transform: capitalize;
+}
+
+.opcoes-list.hidden {
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+}
+
+
+.opcoes-list.disabled {
+  opacity: 0.5;
+  position: relative;
+  z-index: -1;
+  cursor: initial;
+}
+.opcoes-list li {
+  width: 50%;
+  text-align: center;
+  padding: 25px 0;
+  box-sizing: border-box;
+  border: 1px solid #667;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.opcoes-list li:hover {
+  background: #EEE;
+}
+
 
 .modal-out {
   display: none;

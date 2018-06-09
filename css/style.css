@@ -12,6 +12,34 @@
     width: 600px;
  }
 
+.mute{
+    display: table;
+    margin: 0 auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#mute{
+    width: 75px;
+}
+
+.volume{
+    display: table;
+    width: 600px;
+    margin: 0 auto;
+}
+
+.mute{
+    cursor: pointer;
+    width: 50px;
+}
+
+.mute.hidden {
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+}
+
 window.onload = function() {
     "use strict";
 

@@ -4,10 +4,9 @@
  * @author Panagiotis Vourtsis <vourtsis_pan@hotmail.com>
  */
 
- var DIRECAO_ATUAL = 'nada';
 window.onload = function() {
   "use strict";
-
+  var directionMove = "parado";
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
   var w = document.getElementById("canvas").offsetWidth;
@@ -15,11 +14,19 @@ window.onload = function() {
   var terrainImageLoaded = false,
     houseImageLoaded = false,
     pokeballImageLoaded = false,
-    playerImageLoaded = false;
+    playerImageLoaded = false,
+    gramaImageLoaded = false;
   var objectSizes = 20;
   var speed = 50;
   var modifier = 100;
   var score = 0;
+  var pokemons_position = [
+                          [4,0,0,0,2,0,0,0,0,0,1],
+                          [0,0,3,0,0,0,4,0,0,0,0],
+                          [0,2,0,0,0,0,1,0,0,0,0],
+                          [0,0,0,1,0,0,0,3,0,3,0],
+                          [0,0,0,0,0,2,0,0,0,0,0],
+                          [3,0,0,0,0,0,0,0,0,0,2]];
 
   //terrain image
   var terrainImage = new Image();
@@ -39,17 +46,30 @@ window.onload = function() {
   //houseImage.src = "https://www.dropbox.com/s/uagq684b5jbh5t5/house.png?raw=1";
   houseImage.src = "img/cenario/house.png";
 
+
+  var gramaImage = new Image();
+  gramaImage.onload = function() {
+    gramaImageLoaded = true;
+    assetsLoaded();
+  };
+  gramaImage.src = "img/cenario/grama.png";
+
+
   //main sound
   //var mainTheme = new Audio("https://www.dropbox.com/s/uru3oz9mxzpt5gx/main-theme.mp3?raw=1");
-  var mainTheme = new Audio("audio/main-theme.mp3");
+  mainTheme = new Audio("audio/main-theme.mp3");
   mainTheme.loop = true;
   mainTheme.volume = 0.5;
- // mainTheme.play();
+  //mainTheme.play();
 
   //pokeball-selection
   //var pokePick = new Audio("https://www.dropbox.com/s/weemcqn1wlxelll/pickup.mp3?raw=1");
   var pokePick = new Audio("audio/pickup.mp3");
   pokePick.volume = 0.8;
+
+  inimigoAudio = new Audio("audio/rival.mp3");
+  inimigoAudio.volume = 0.5;
+  inimigoAudio.loop = true;
 
   //player image
   var playerImage = new Image();
@@ -69,6 +89,7 @@ window.onload = function() {
   //pokeballImage.src = "https://www.dropbox.com/s/biqj124larffqk9/pokeball.png?raw=1";
   pokeballImage.src = "img/pokeball.png";
 
+
   /**
    * It will hold all the pockeball data like x and y axis position
    * sprite position and item distance is for determine which item is selected from the sprite - @todo future use for knowing on score which one player picked
@@ -84,12 +105,14 @@ window.onload = function() {
   };
   pokeball.generatePosition = function() {
     do {
-      pokeball.x = Math.floor(Math.random() * 20) + 1;
-      pokeball.y = Math.floor(Math.random() * 16) + 4;
+      pokeball.x = Math.floor(Math.random() * 19.5) + 1;
+      pokeball.y = Math.floor(Math.random() * 16.5) + 4;
     } while (check_collision(pokeball.x, pokeball.y));
 
     pokeball.spritePosition = Math.floor(Math.random() * 4) + 0; // get position from 0-4
   };
+
+
 
   /**
    * Holds all the player's info like x and y axis position, his current direction (facing).
@@ -99,8 +122,8 @@ window.onload = function() {
    * @name pokeball
    */
   var player = {
-    x: Math.round((w / 2) / objectSizes),
-    y: Math.round((h / 2) / objectSizes),
+    x: Math.round((260 / 2) / objectSizes),
+    y: Math.round((280 / 2) / objectSizes),
     currentDirection: "stand",
     direction: {
       "stand": {
@@ -149,6 +172,10 @@ window.onload = function() {
       x: player.x,
       y: player.y
     };
+
+    if(pause_map == 1){
+      return;
+    }
 
     /**
      * Decide here the direction of the user and do the neccessary changes on the directions
@@ -206,6 +233,9 @@ window.onload = function() {
         }
 
         break;
+
+        default:
+        break;
     }
 
     /**
@@ -216,20 +246,22 @@ window.onload = function() {
       player.y = hold_player.y;
     }
 
+    verificaAchouPokemon();
+
     /**
      * If player finds the coordinates of pokeball the generate new one, play the sound and update the score
      * ACHOU POKEBOLA
      */
-    if (player.x == pokeball.x && player.y == pokeball.y) { // found a pokeball !! create a new one
+   /* if (player.x == pokeball.x && player.y == pokeball.y) { // found a pokeball !! create a new one
       console.log("found a pokeball of " + pokeball.spritePosition + "! Bravo! ");
       pokePick.pause();
       pokePick.currentTime = 0;
       pokePick.play();
       score += 1;
       pokeball.generatePosition();
-      $('#canvas').hide();
-      $('#battle').show();
-    }
+      //$('#canvas').hide();
+      //$('#battle').show();
+    }*/
 
     update();
 
@@ -243,17 +275,33 @@ window.onload = function() {
   function update() {
     ctx.drawImage(terrainImage, 0, 0);
     ctx.drawImage(houseImage, 80, 60);
-
+    // Desenha gramas
+    for(var y=10; y <= 15; y++){
+      for(var x = 5 ; x <= 15; x++){
+        ctx.drawImage(gramaImage, x*objectSizes, y*objectSizes); 
+      }
+    }
     //Genboard
     board();
 
     //pokeball
-    ctx.drawImage(pokeballImage, pokeball.spritePosition * pokeball.spriteItemDistance, 0, objectSizes, objectSizes, pokeball.x * objectSizes, pokeball.y * objectSizes, objectSizes, objectSizes);
+    //ctx.drawImage(pokeballImage, pokeball.spritePosition * pokeball.spriteItemDistance, 0, objectSizes, objectSizes, pokeball.x * objectSizes, pokeball.y * objectSizes, objectSizes, objectSizes);
 
     //player
     console.log("y:", (player.y * objectSizes) / objectSizes);
     console.log("x", (player.x * objectSizes) / objectSizes);
-    ctx.drawImage(playerImage, player.direction[player.currentDirection].x, player.direction[player.currentDirection].y, objectSizes - 2, objectSizes, player.x * objectSizes, player.y * objectSizes, objectSizes, objectSizes);
+    ctx.drawImage(playerImage, 
+      player.direction[player.currentDirection].x,
+      player.direction[player.currentDirection].y, 
+      objectSizes - 2, 
+      objectSizes, 
+      player.x * objectSizes, 
+      player.y * objectSizes, 
+      objectSizes, objectSizes);
+    
+       
+
+    //startMoveTouchAuto();
   }
 
   /**
@@ -266,18 +314,18 @@ window.onload = function() {
   function check_collision(x, y) {
     var foundCollision = false;
 
-    if (((x > 3 && x < 9) && y == 6) || ((x > 4 && x < 9) && (y == 5 || y == 4 || y == 3))) { //collision on house
+    if (((x > 3.5 && x < 9) && y == 6) || ((x >= 5 && x < 9) && (y >= 3 && y <= 5.5))) { //collision on house
       console.log("on house");
       foundCollision = true;
     }
 
-    if ((x < 1 || x > 20) ||
+    if ((x < 1.5 || x > 20.5) ||
       (y < 2 || y > 20) ||
-      ((y > 0 && y < 4) && (x == 20 || x == 19)) || //right corner
-      ((y > 0 && y < 4) && (x == 2 || x == 3)) || //left corner
-      ((y > 18) && (x == 2 || x == 3)) || //left corner
-      ((x > 17) && (y == 19 || y == 20)) || //left corner
-      ((x > 19) && (y == 17 || y == 18)) //left corner 2
+      ((y > 0 && y < 4) && (x > 19 && x <= 21)) || //right corner
+      ((y > 0 && y < 4) && (x >= 1.5 && x <= 3)) || //left corner
+      ((y > 18) && (x >= 1.5 && x <= 3)) || //left corner
+      ((x > 17) && (y > 18 && y <= 20)) || //left corner
+      ((x > 19) && (y >= 16.5 && y <= 18)) //left corner 2
     ) {
       console.log("lost on the woods");
       foundCollision = true
@@ -312,7 +360,7 @@ window.onload = function() {
    */
   function assetsLoaded() {
     if (terrainImageLoaded == true && houseImageLoaded == true && pokeballImageLoaded == true && playerImageLoaded == true) {
-      pokeball.generatePosition();
+      //pokeball.generatePosition();
       update();
     }
   }
@@ -323,6 +371,7 @@ window.onload = function() {
   document.onkeydown = function(e) {
     e = e || window.event;
 
+    stopMoveTouchAuto();
     if (e.keyCode == "37") player.move("left");
     else if (e.keyCode == "38") player.move("up");
     else if (e.keyCode == "39") player.move("right");
@@ -341,6 +390,8 @@ window.onload = function() {
       console.log('chegou start');
       initialX = e.touches[0].clientX;
       initialY = e.touches[0].clientY;
+      //directionMove = "";
+      stopMoveTouchAuto();
     };
      
     function moveTouch(e) {
@@ -352,7 +403,7 @@ window.onload = function() {
       if (initialY === null) {
         return;
       }
-     
+
       var currentX = e.touches[0].clientX;
       var currentY = e.touches[0].clientY;
      
@@ -363,24 +414,28 @@ window.onload = function() {
         // sliding horizontally
         if (diffX > 0) {
           // swiped left
-          player.move("left");
+          directionMove = "left";
+          startMoveTouchAuto();
           console.log("swiped left");
 
         } else {
           // swiped right
           console.log("swiped right");
-          player.move("right");
+          directionMove = "right";
+          startMoveTouchAuto();
         }  
       } else {
         // sliding vertically
         if (diffY > 0) {
           // swiped up
           console.log("swiped up");
-          player.move("up");
+          directionMove = "up";
+          startMoveTouchAuto();
         } else {
           // swiped down
           console.log("swiped down");
-          player.move("down");
+          directionMove = "down";
+          startMoveTouchAuto();
         }  
       }
      
@@ -389,6 +444,82 @@ window.onload = function() {
        
       e.preventDefault();
   };
+
+   function moveTouchAuto(){
+      switch (directionMove) {
+        case "left":
+          player.move("left");
+        break;
+        case "right":
+          player.move("right");
+        break;
+        case "up":
+          player.move("up");
+        break;
+        case "down":
+          player.move("down");
+        break;
+
+        default:
+        break;
+      }
+
+      if(directionMove != "") {
+            setTimeout(moveTouchAuto, 200);
+      }
+    };
+
+
+    function startMoveTouchAuto() {
+        moveTouchAuto();
+    };
+
+    function stopMoveTouchAuto() {
+      directionMove = "";
+    };
+
+    function verificaAchouPokemon(){
+      var x,y;
+      y = (player.y * objectSizes) / objectSizes;
+      x = (player.x * objectSizes) / objectSizes;
+      if(x >= 5 && x <= 15 && y >= 10 && y <= 15){
+        console.log("graminha");
+        x = Math.trunc(x) - 5;
+        y = Math.trunc(y) - 10;
+        if(pokemons_position[y][x] > 0){
+          pokemonEncontrado = pokemons_position[y][x];
+          pokemons_position[y][x] = 0;
+          resetGame();
+          $('#canvas').fadeOut(1000);
+          $('#battle').slideDown(3000);
+          pause_map=1;
+          if(mute == 0){
+            inimigoAudio.currentTime = 0; //Reinicia
+            inimigoAudio.play();
+          }
+        }
+      }
+      //pokemons_position
+    }
+
+    $('.mute').click(function(){
+      console.log("chegou para audio");
+      if(mute == 0){
+        //mainTheme.pause();
+        inimigoAudio.pause();
+        mute = 1;
+        $('#som').addClass("hidden");
+        $('#mute').removeClass("hidden");
+      }else{
+        if(pause_map === 1){
+          inimigoAudio.play();
+        }
+        mute = 0;
+        $('#som').removeClass("hidden");
+        $('#mute').addClass("hidden");
+      }
+  
+});
 
 
 };
