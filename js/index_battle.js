@@ -975,6 +975,8 @@ function enemyDied(that){
   //removi aqui$('.characters').removeClass('hidden');
   //removi aqui$('.characters').children().slideDown('500');
   $('.enemy .char').append('<div class="morreu">Desmaiou!</div>');
+  $('.enemy .char img').addClass('die');
+  $('.enemy .char img').attr('src', gameData.enemy.img.default);
   
   //gameData.enemy = {};
   // unbind click for reset

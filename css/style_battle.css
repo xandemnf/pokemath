@@ -23,9 +23,9 @@ strong {
 }
 
 .morreu{
-    position: absolute;
-    top: 35px;
-    left: 285px;
+  position: absolute;
+  top: 35px;
+  left: 285px;
 }
 
 .type {
@@ -173,13 +173,13 @@ strong {
   height: 80px;
 }
 .stadium > section .char .data {
-    width: 250px;
-    padding: 9px 2%;
-    box-sizing: border-box;
-    top: 0px;
-    border-radius: 8px;
-    background: #F8F8D8;
-    border: 6px solid #506860;
+  width: 250px;
+  padding: 9px 2%;
+  box-sizing: border-box;
+  top: 0px;
+  border-radius: 8px;
+  background: #F8F8D8;
+  border: 6px solid #506860;
 }
 
 .stadium > section .char .data progress::-moz-progress-bar { 
@@ -199,6 +199,14 @@ strong {
 .stadium .enemy img {
   right: 85px;
   margin-left: 50px;
+}
+
+.stadium .enemy .die {
+  -ms-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 
 .stadium .enemy .data {
@@ -222,9 +230,9 @@ strong {
 }
 
 .attack-list.hidden {
-    visibility: hidden;
-    opacity: 0;
-    height: 0;
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
 }
 
 .attack-list.disabled {
@@ -256,9 +264,9 @@ strong {
 }
 
 .opcoes-list.hidden {
-    visibility: hidden;
-    opacity: 0;
-    height: 0;
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
 }
 
 
@@ -324,7 +332,7 @@ strong {
 }
 
 .machop_back{
-    height: 300px !important;
-    bottom: -15px;
-    left: 8px !important;
+  height: 300px !important;
+  bottom: -15px;
+  left: 8px !important;
 }

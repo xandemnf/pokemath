@@ -376,6 +376,7 @@ window.onload = function() {
     else if (e.keyCode == "38") player.move("up");
     else if (e.keyCode == "39") player.move("right");
     else if (e.keyCode == "40") player.move("down");
+    else if (e.keyCode == "27") $('.close').trigger("click"); //esc fecha modal
   };
 
   // MOVE ON TOCH
@@ -520,7 +521,11 @@ window.onload = function() {
         $('#mute').addClass("hidden");
       }
   
-});
+    });
+
+    $('body').onkeydown(function(){
+
+    })
 
 
 };
