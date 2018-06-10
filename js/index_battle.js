@@ -251,8 +251,9 @@ function buildVars(){
         //back: "http://rs425.pbsrc.com/albums/pp335/Grasaldrea/ShinyBulbasauranimatedback.gif~c200",
         deranged: "img/pokemon/b3617568f13aa750c57eacc45d0b2da7.gif_c200",
         //deranged: "http://rs522.pbsrc.com/albums/w348/Richtoon18/b3617568f13aa750c57eacc45d0b2da7.gif~c200",
-        sleep: "img/pokemon/tumblr_msesq5uAIk1r93jsro1_500.gif"
+        sleep: "img/pokemon/tumblr_msesq5uAIk1r93jsro1_500.gif",
         //sleep: "https://31.media.tumblr.com/4dd7682db26ac687ef81f0dd06794652/tumblr_msesq5uAIk1r93jsro1_500.gif"
+        die: "img/pokemon/bulbasaur_died.png"
       },
       hp: {
         current: 500,
@@ -499,9 +500,7 @@ function resetGame(){
   }*/
   //characterChoice();
 
-  $('.attack-list').addClass('hidden');
-  $('.voltar').addClass('hidden');
-  $('.opcoes-list').removeClass('hidden');
+  opcoesShow();
   pokemonPlayerAtual();
   enemyFind();
   opcoesPlayer();
@@ -589,7 +588,6 @@ function enemyFind(){
 }
 
 function pokemonChoice(){
-  $('.characters').removeClass('hidden');
   $('.characters').empty();
   for(var i in characters){
     // build the character list
@@ -714,50 +712,11 @@ function attackEnemy(that, callback){
 
     if(gameData.enemy.hp.current <= 0){
       // Enemy is dead
-
-      clearModal();
-      $('.modal-in header').append('<h1>Você Ganhou </h1><span class="close">x</span>');
-      $('.modal-in section').append('<p>Parabéns!</p>');
-      $('.modal-out').slideDown('400');
-      modalControls();
-      renderMap();
-
-      gameData.enemy.hp.current = 0;
-      // clear the stadium of the dead
-      $('.enemy').empty();
-      // show the available characters
-      $('.characters').removeClass('hidden');
-      $('.characters').children().slideDown('500');
-
-      gameData.enemy = {};
-
-      // unbind click for reset
-      $('.attack-list li').unbind('click');
+      enemyDied(that);
     }else{
       // enemy is still alive (Attack!!!)
 
-      // subtract attack
-      curAttack.avail.remaining--;
-
-      // interval to animate health bar
-      progressInt = setInterval(function(){
-        // get current value of health bar
-        var val = $('.stadium .enemy progress').val();
-        val--;
-
-        // update health bar value
-        $('.stadium .enemy progress').val(val);
-
-        if(val === gameData.enemy.hp.current){
-          // if you've hit your target clear interval
-          clearInterval(progressInt);
-          progressComplete = 1;
-        }
-      },1);
-
-      // update health numbers
-      $('.stadium .enemy .data p span').text(gameData.enemy.hp.current);
-      that.children('.attack-count').children('small').children('span').text(curAttack.avail.remaining);
+      enemySubstractHp(that);
 
       // wait a second to recover
       setTimeout(function(){
@@ -765,9 +724,7 @@ function attackEnemy(that, callback){
         defend(that);
       }, 1000);
 
-      $('.attack-list').addClass('hidden');
-      $('.voltar').addClass('hidden');
-      $('.opcoes-list').removeClass('hidden');
+      opcoesShow();
     }
   }
 }
@@ -816,21 +773,7 @@ function defend(that){
   if(gameData.hero.hp.current <= 0){
     // ding dong the hero's dead
 
-    clearModal();
-
-    $('.modal-in header').append('<h1>'+ gameData.hero.name +' morreu! :( </h1><span class="close">x</span>');
-    $('.modal-in section').append('<p>Não desanime!! Escolha outro pokemon e continue lutando!');
-    $('.modal-out').slideDown('400');
-    //$('#battle').hide();
-    //$('#canvas').show();
-    modalControls();
-   // $('#pokemon_'+gameData.hero.name).remove(); 
-    $('.attack-list').addClass('hidden');
-    $('.voltar').addClass('hidden');
-    $('.opcoes-list').removeClass('hidden');
-    characters.splice(gameData.hero.index, 1); //Remove o pokemon da lista
-    gameData.hero.hp.current = 0;
-    pokemonChoice();
+    heroDied();
 
     //resetGame();
   }else{
@@ -932,15 +875,10 @@ $('.opcoes-list li').click(function(){
     console.log('chegou no click das opcoes');
     switch(opcao){
       case 'opcao_ataque':
-        $('.opcoes-list').addClass('hidden');
-        $('.attack-list').removeClass('hidden');
-        $('.voltar').removeClass('hidden');
+        show(['attack-list','voltar']);
       break;
       case 'opcao_pokemons':
-        $('.opcoes-list').addClass('hidden');
-        $('.attack-list').addClass('hidden');
-        $('.voltar').removeClass('hidden');
-        pokemonChoice();
+        opcoesPokemon();
       break;
       case 'opcao_fugir':
         clearModal();
@@ -956,10 +894,16 @@ $('.opcoes-list li').click(function(){
     
   });
 $('.voltar').click(function(){
-   $('.opcoes-list').removeClass('hidden');
-    $('.attack-list').addClass('hidden');
-    $('.characters').addClass('hidden');
-    $('.voltar').addClass('hidden');
+    opcoesShow();
+});
+
+$('.continuar').click(function(){
+    clearModal();
+    $('.modal-in header').append('<h1>Você Ganhou </h1><span class="close">x</span>');
+    $('.modal-in section').append('<p>Parabéns!</p>');
+    $('.modal-out').slideDown('400');
+    modalControls();
+    renderMap();
 });
 
 }
@@ -970,3 +914,98 @@ function renderMap(){
       pause_map = 0;
       inimigoAudio.pause();
   }
+
+function continuarShow(){
+    show('continuar');
+}
+
+function opcoesShow(){
+    show('opcoes-list');
+}
+
+function show(e){
+  // elementos eh um array com todas as classes dos elementos clicaveis
+  var elementos = ['opcoes-list','attack-list','characters','voltar','continuar'];
+  //mostrar uma lista de elementos
+  if(Array.isArray(e)){
+    e.forEach(function(item,indice,arr){
+      var index = elementos.indexOf(item); // retorna o indice do item
+      if (index > -1) { // verifica se encontrou o elemento na lista
+        elementos.splice(index, 1); // retira o elemento da lista de elementos
+        $('.'+item).removeClass('hidden');
+      }
+    });  
+  }else{
+    var index = elementos.indexOf(e);
+    if (index > -1) {
+      elementos.splice(index, 1);
+      $('.'+e).removeClass('hidden');
+    }
+  }
+
+  elementos.forEach(function(item,indice,arr){
+    $('.'+item).addClass('hidden');
+  });
+  
+}
+
+function heroDied(){
+    clearModal();
+
+    $('.modal-in header').append('<h1>'+ gameData.hero.name +' morreu! :( </h1><span class="close">x</span>');
+    $('.modal-in section').append('<p>Não desanime!! Escolha outro pokemon e continue lutando!');
+    $('.modal-out').slideDown('400');
+    //$('#battle').hide();
+    //$('#canvas').show();
+    modalControls();
+   // $('#pokemon_'+gameData.hero.name).remove(); 
+    characters.splice(gameData.hero.index, 1); //Remove o pokemon da lista
+    gameData.hero.hp.current = 0;
+    opcoesPokemon();
+}
+
+
+function enemyDied(that){
+  continuarShow();
+  gameData.enemy.hp.current = 0;
+  enemySubstractHp(that);
+  // clear the stadium of the dead
+  //remove aqui$('.enemy').empty();
+  // show the available characters
+  //removi aqui$('.characters').removeClass('hidden');
+  //removi aqui$('.characters').children().slideDown('500');
+  $('.enemy .char').append('<div class="morreu">Desmaiou!</div>');
+  
+  //gameData.enemy = {};
+  // unbind click for reset
+  $('.attack-list li').unbind('click');
+}
+
+function opcoesPokemon(){
+  show(['characters','voltar']);
+  pokemonChoice();
+}
+
+function enemySubstractHp(that){
+  // subtract attack
+      curAttack.avail.remaining--;
+
+      // interval to animate health bar
+      progressInt = setInterval(function(){
+        // get current value of health bar
+        var val = $('.stadium .enemy progress').val();
+        val--;
+
+        // update health bar value
+        $('.stadium .enemy progress').val(val);
+        if(val === -1 || val === gameData.enemy.hp.current){
+          // if you've hit your target clear interval
+          clearInterval(progressInt);
+          progressComplete = 1;
+        }
+      },1);
+
+      // update health numbers
+      $('.stadium .enemy .data p span').text(gameData.enemy.hp.current);
+      that.children('.attack-count').children('small').children('span').text(curAttack.avail.remaining);
+}

@@ -22,6 +22,12 @@ strong {
   margin: 0 auto;
 }
 
+.morreu{
+    position: absolute;
+    top: 35px;
+    left: 285px;
+}
+
 .type {
   display: inline-block;
   height: 30px;
@@ -80,6 +86,25 @@ strong {
 }
 
 .voltar.hidden {
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+}
+
+.continuar li {
+  width: 100%;
+  text-align: center;
+  padding: 5px 0;
+  box-sizing: border-box;
+  border: 1px solid #667;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.continuar li:hover {
+  background: #EEE;
+}
+
+.continuar.hidden {
   visibility: hidden;
   opacity: 0;
   height: 0;

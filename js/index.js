@@ -497,6 +497,7 @@ window.onload = function() {
             inimigoAudio.currentTime = 0; //Reinicia
             inimigoAudio.play();
           }
+          stopMoveTouchAuto();
         }
       }
       //pokemons_position
