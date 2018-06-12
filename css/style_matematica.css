@@ -14,7 +14,7 @@
 }
 
 
-.alternativas-list li.disabled, .alternativas-list li.disabled:hover {
+.alternativas-list li.disabled, .alternativas-list li.disabled:hover, .alternativas-list li.disabled.hover {
   opacity: 0.5;
   position: relative;
   z-index: 0;
@@ -22,6 +22,11 @@
   background: #fff;
   color:#000;
 }
+
+.alternativas-list li.disabled:hover, .alternativas-list li.disabled.hover{
+  border: solid red;
+}
+
 .alternativas-list li {
   width: 50%;
   text-align: center;
@@ -35,7 +40,7 @@
   font-size: 15px;
   transition: background 0.3s ease;
 }
-.alternativas-list li:hover {
+.alternativas-list li:hover, .alternativas-list li.hover {
   background: #fff;
   color:#000;
 }

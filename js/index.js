@@ -372,11 +372,25 @@ window.onload = function() {
     e = e || window.event;
 
     stopMoveTouchAuto();
-    if (e.keyCode == "37") player.move("left");
-    else if (e.keyCode == "38") player.move("up");
-    else if (e.keyCode == "39") player.move("right");
-    else if (e.keyCode == "40") player.move("down");
-    else if (e.keyCode == "27") $('.close').trigger("click"); //esc fecha modal
+    if (e.keyCode == "37"){
+      moveByKey('left');
+    } 
+    else if (e.keyCode == "38"){
+      moveByKey('up');
+    } 
+    else if (e.keyCode == "39"){
+      moveByKey('right');
+    } 
+    else if (e.keyCode == "40"){
+      moveByKey('down');
+    } 
+    else if (e.keyCode == "27"){
+      $('.close').trigger("click"); //esc fecha modal
+    }
+    else if (e.keyCode == "13"){
+      enter_tecla.removeClass('hover');
+      enter_tecla.trigger("click"); //enter para selecionar
+    } 
   };
 
   // MOVE ON TOCH
@@ -479,6 +493,22 @@ window.onload = function() {
       directionMove = "";
     };
 
+    function moveByKey(direction){
+      console.log(tela);
+      if(tela == 'mapa'){
+        player.move(direction);
+      }else if(tela == 'opcoes'){
+        moveOpcoesByKey(direction); // funcao no arquivo common.js
+      }else if(tela == 'ataques'){
+        moveAtaquesByKey(direction); // funcao no arquivo common.js
+      }else if(tela == 'pokemons'){
+        movePokemonsByKey(direction); // funcao no arquivo common.js
+      }else if(tela == 'alternativas'){
+        moveAlternativasByKey(direction); // funcao no arquivo common.js
+      }   
+
+    }
+
     function verificaAchouPokemon(){
       var x,y;
       y = (player.y * objectSizes) / objectSizes;
@@ -498,6 +528,9 @@ window.onload = function() {
             inimigoAudio.currentTime = 0; //Reinicia
             inimigoAudio.play();
           }
+          tela = "opcoes";
+          enter_tecla = $("#opcoes_ataque");
+          $('#opcoes_ataque').addClass('hover');
           stopMoveTouchAuto();
         }
       }

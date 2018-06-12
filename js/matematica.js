@@ -4,6 +4,7 @@ questoes = [
 ]
 
 function equacao(that){
+	
 	resposta_certa = 0;
 	console.log('chegou equacao');
 	clearModal1();
@@ -21,8 +22,10 @@ function equacao(that){
     //$('#battle').hide();
     //$('#canvas').show();
     //modalControls();
+	tela = "alternativas";
+	enter_tecla = $('.alternativa').first();
+	enter_tecla.addClass('hover');
 	alternativasClick(that);
-
 	/*switch(level){
 		case 1:
 		break;
@@ -59,17 +62,20 @@ function alternativasClick(that){
 	    	clearModalFeedback()
 	    	$('.modal-in-feedback header').append('<h1 class="green">Parabéns você acertou!</h1>');
 	    	$('.modal-in-feedback header').append('<h2>Efetividade ataque: <p>'+Math.floor(curAttack.hp)+'</p></h2>');
-	    	$('.modal-in-feedback section').append('<button class="btn btn-default">Ok</button>');
+	    	$('.modal-in-feedback section').append('<button id="botao" class="btn btn-default">Ok</button>');
 	    	$('.modal-feedback').show();
 	    	$('.modal').hide();
+	    	enter_tecla = $('#botao');
 	    	okClick(that);
 	    }else{
 	    	if($(this).hasClass('disabled')){
+	    		$(this).addClass('hover');
 	    		return;
 	    	}
 	    	curAttack.hp = curAttack.hp*0.8;
-	    	$(this).removeClass('alternativa');
+	    	//$(this).removeClass('alternativa');
 	    	$(this).addClass('disabled');
+	    	$(this).addClass('hover');
 	    	clearModalFeedback()
 	    	$('.modal-in header h2').addClass('hidden');
 	    	$('.modal-in header h3 p').text(Math.floor(curAttack.hp));
@@ -91,6 +97,11 @@ function okClick(that){
 			setTimeout(function(){
 				attackEffect(that);
 			}, 700); // espera 700 milisegundos antes de chamar a funcao attackEffect
-		}		
+		}
+		$('.hover').removeClass('hover');
+		tela = "ataques";
+		enter_tecla = $("#attack-0");
+		enter_tecla.addClass('hover');		
 	});
 }
+

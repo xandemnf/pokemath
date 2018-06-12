@@ -522,6 +522,7 @@ function resetGame(){
   }*/
   //characterChoice();
 
+  $('#voltar').addClass('hover');
   opcoesShow();
   pokemonPlayerAtual();
   enemyFind();
@@ -554,10 +555,11 @@ function pokemonPlayerAtual(){
 
 function opcoesPlayer(){
   $('.opcoes-list').empty();
-  $('.opcoes-list').append('<li id="opcao_ataque">Ataque</li>');
+  $('.opcoes-list').append('<li id="opcao_ataque" class="hover">Ataque</li>');
   $('.opcoes-list').append('<li id="opcao_pegar">Pegar</li>');
   $('.opcoes-list').append('<li id="opcao_fugir">Fugir</li>');
   $('.opcoes-list').append('<li id="opcao_pokemons">Pokemons</li>');
+
   opcoesPlayerClick();
 
 }
@@ -643,9 +645,11 @@ function characterChoice(){
 
         // OPCOES
 
-        $('.characters').addClass('hidden');
-        $('.voltar').addClass('hidden');
-        $('.opcoes-list').removeClass('hidden');
+        opcoesShow();
+        tela = 'opcoes';
+        enter_tecla = $('#opcao_ataque');
+        enter_tecla.addClass('hover');
+
 
 
         // update instructions
@@ -887,10 +891,18 @@ $('.opcoes-list li').click(function(){
     console.log('chegou no click das opcoes');
     switch(opcao){
       case 'opcao_ataque':
+        $('.hover').removeClass('hover');
+        tela = 'ataques';
         show(['attack-list','voltar']);
+        $('#voltar').addClass('hover');
+        enter_tecla = $('#voltar');
       break;
       case 'opcao_pokemons':
+        $('.hover').removeClass('hover');
+        tela = 'pokemons';
         opcoesPokemon();
+        $('#voltar').addClass('hover');
+        enter_tecla = $('#voltar');
       break;
       case 'opcao_fugir':
         clearModal();
@@ -907,6 +919,9 @@ $('.opcoes-list li').click(function(){
   });
 $('.voltar').click(function(){
     opcoesShow();
+    tela = 'opcoes';
+    enter_tecla = $('#opcao_ataque');
+    enter_tecla.addClass('hover');
 });
 
 $('.continuar').click(function(){
@@ -925,6 +940,7 @@ function renderMap(){
       $('#canvas').show();
       pause_map = 0;
       inimigoAudio.pause();
+      tela = 'mapa';
   }
 
 function continuarShow(){
@@ -1028,7 +1044,7 @@ function populateAttack(){
    $('.attack-list').empty();
     for(var i in gameData.hero.attacks){
     // populate attack list
-       $('.attack-list').append('<li value="'+gameData.hero.attacks[i].name+'">'
+       $('.attack-list').append('<li id="attack-'+i+'" value="'+gameData.hero.attacks[i].name+'">'
       +'<p class="attack-name"><strong>'
       +gameData.hero.attacks[i].name
       +'</strong></p><p class="attack-count"><small><span>'
