@@ -1,0 +1,115 @@
+.alternativas-list {
+  display: flex;
+  flex-wrap: wrap;
+  background: #FFFAFA;
+  position: initial;
+  transtion: opacity 0.3s ease;
+  text-transform: capitalize;
+}
+
+.alternativas-list.hidden {
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+}
+
+
+.alternativas-list li.disabled, .alternativas-list li.disabled:hover {
+  opacity: 0.5;
+  position: relative;
+  z-index: 0;
+  cursor: not-allowed;
+  background: #fff;
+  color:#000;
+}
+.alternativas-list li {
+  width: 50%;
+  text-align: center;
+  padding: 25px 0;
+  box-sizing: border-box;
+  border: 1px solid #818182;
+  cursor: pointer;
+  background: #000;
+  font-weight: bold;
+  color: #fff;
+  font-size: 15px;
+  transition: background 0.3s ease;
+}
+.alternativas-list li:hover {
+  background: #fff;
+  color:#000;
+}
+
+.modal-feedback {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(33, 33, 33, 0.75);
+  z-index: 900;
+}
+.modal-feedback .modal-in-feedback {
+  position: fixed;
+  top: 15vh;
+  left: 0;
+  right: 0;
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  background: #FFFAFA;
+}
+.modal-feedback .modal-in-feedback header {
+  position: relative;
+  min-height: 30px;
+  text-align: center;
+  padding: 10px 3%;
+  box-sizing: border-box;
+}
+.modal-feedback .modal-in-feedback header h1 {
+  font-size: 2.2em;
+}
+
+.modal-feedback .modal-in-feedback header h2 {
+  font-size: 26px;
+  color: #e9240e;
+}
+
+.modal-feedback .modal-in-feedback .close {
+  cursor: pointer;
+  position: absolute;
+  top: 13px;
+  right: 13px;
+}
+.modal-feedback .modal-in-feedback section {
+  box-sizing: border-box;
+  padding: 25px 3%;
+}
+
+
+.modal-in header h2{
+  color: #e9240e;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.modal-in header h2.hidden{
+  visibility: hidden;
+}
+
+.modal-in header h3, .modal-feedback .modal-in-feedback header h2{
+  font-size: 20px;
+  color: #007bff;
+  margin-top: 10px;
+}
+
+.modal-out .modal-in header h1#pergunta {
+  font-size: 24px;
+}
+
+.modal-feedback .btn{
+  margin: 0 auto;
+  display: table;
+  cursor: pointer;
+}

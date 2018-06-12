@@ -102,7 +102,8 @@ function buildVars(){
           avail: {
             total: 30,
             remaining: 30
-          }
+          },
+          level: 1
         },
         {
           name: "electro ball",
@@ -110,7 +111,8 @@ function buildVars(){
           avail: {
             total: 10,
             remaining: 10
-          }
+          },
+          level: 2
         },
         {
           name: "volt tackle",
@@ -118,7 +120,8 @@ function buildVars(){
           avail: {
             total: 5,
             remaining: 5
-          }
+          },
+          level: 3
         },
         {
           name: "thunder crack",
@@ -126,7 +129,8 @@ function buildVars(){
           avail: {
             total: 2,
             remaining: 2
-          }
+          },
+          level: 4
         }
       ]
     },
@@ -139,7 +143,7 @@ function buildVars(){
       img: {
         default: "img/pokemon/004Charmander_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png",
         //default: "http://img3.wikia.nocookie.net/__cb20150330015216/pokemon/images/f/f5/004Charmander_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png",
-        front: "img/pokemon/Charmander.gif_c200",
+        front: "img/pokemon/charmander_front.gif",
         //front: "http://rs772.pbsrc.com/albums/yy9/HybridRainbow88/Charmander.gif~c200",
         back: "img/pokemon/Charmander_Back_XY.gif"
         //back: "http://vignette1.wikia.nocookie.net/pokemon/images/2/23/Charmander_Back_XY.gif/revision/latest?cb=20141009063457"
@@ -155,7 +159,9 @@ function buildVars(){
           avail: {
             total: 30,
             remaining: 30
-          }
+          },
+          level: 1,
+          level: 1
         },
         {
           name: "flamethrower",
@@ -163,7 +169,8 @@ function buildVars(){
           avail: {
             total: 10,
             remaining: 10
-          }
+          },
+          level: 2
         },
         {
           name: "burning tail",
@@ -171,7 +178,8 @@ function buildVars(){
           avail: {
             total: 5,
             remaining: 5
-          }
+          },
+          level: 3
         },
         {
           name: "fire spin",
@@ -179,7 +187,8 @@ function buildVars(){
           avail: {
             total: 2,
             remaining: 2
-          }
+          },
+          level: 4
         }
       ]
     },
@@ -208,7 +217,8 @@ function buildVars(){
           avail: {
             total: 30,
             remaining: 30
-          }
+          },
+          level: 1
         },
         {
           name: "water gun",
@@ -216,7 +226,8 @@ function buildVars(){
           avail: {
             total: 10,
             remaining: 10
-          }
+          },
+          level: 2
         },
         {
           name: "shell attack",
@@ -224,7 +235,8 @@ function buildVars(){
           avail: {
             total: 5,
             remaining: 5
-          }
+          },
+          level: 3
         },
         {
           name: "hydro pump",
@@ -232,7 +244,8 @@ function buildVars(){
           avail: {
             total: 2,
             remaining: 2
-          }
+          },
+          level: 4
         }
       ]
     },
@@ -266,7 +279,8 @@ function buildVars(){
           avail: {
             total: 30,
             remaining: 30
-          }
+          },
+          level: 1
         },
         {
           name: "vine whip",
@@ -274,7 +288,8 @@ function buildVars(){
           avail: {
             total: 10,
             remaining: 10
-          }
+          },
+          level: 2
         },
         {
           name: "razor leaf",
@@ -282,7 +297,8 @@ function buildVars(){
           avail: {
             total: 5,
             remaining: 5
-          }
+          },
+          level: 3
         },
         {
           name: "solar beam",
@@ -290,7 +306,8 @@ function buildVars(){
           avail: {
             total: 2,
             remaining: 2
-          }
+          },
+          level: 4
         }
       ]
     },
@@ -319,7 +336,8 @@ function buildVars(){
           avail: {
             total: 30,
             remaining: 30
-          }
+          },
+          level: 1
         },
         {
           name: "karate chop",
@@ -327,7 +345,8 @@ function buildVars(){
           avail: {
             total: 10,
             remaining: 10
-          }
+          },
+          level: 2
         },
         {
           name: "seismic toss",
@@ -335,7 +354,8 @@ function buildVars(){
           avail: {
             total: 5,
             remaining: 5
-          }
+          },
+          level: 3
         },
         {
           name: "hundred furious punches",
@@ -343,7 +363,8 @@ function buildVars(){
           avail: {
             total: 2,
             remaining: 2
-          }
+          },
+          level: 4
         }
       ]
     }
@@ -417,6 +438,7 @@ function attackMultiplier(attacker, curAttack){
     defender = 'hero';
   }
 
+
   if(gameData[defender].weakness.indexOf(gameData[attacker].type) >= 0){
     // weakness exists
     curAttack.hp *= 2;
@@ -487,8 +509,8 @@ function resetGame(){
   //$('.instructions p').text('Choose your hero');
 
   // set & start the opening game music
-  $('audio.music').attr('src',music["opening"]);
-  $('audio.music')[0].play();
+  $//('audio.music').attr('src',music["opening"]);
+  //$('audio.music')[0].play();
 
   // empty characters
   $('.characters').empty();
@@ -517,17 +539,7 @@ function pokemonPlayerAtual(){
   populateChar($('.stadium .hero'), 'hero');
   // variavel atual esta no common.js
   
-  $('.attack-list').empty();
-  for(var i in gameData.hero.attacks){
-    // populate attack list
-     $('.attack-list').append('<li>'
-    +'<p class="attack-name"><strong>'
-    +gameData.hero.attacks[i].name
-    +'</strong></p><p class="attack-count"><small><span>'
-    +gameData.hero.attacks[i].avail.remaining+'</span>/'
-    +gameData.hero.attacks[i].avail.total+'</small>'
-    +'</p></li>');
-  }
+  populateAttack();
 
   $('.attack-list').addClass('disabled');
 
@@ -591,11 +603,14 @@ function pokemonChoice(){
   $('.characters').empty();
   for(var i in characters){
     // build the character list
-    $(".characters").append('<li id="pokemon_'+characters[i].name+'" class="char-container">'
-      +'<img src="'+characters[i].img.default+'" alt="'+characters[i].name+'">'
-      +'<h2>'+characters[i].name+'</h2>'
-      +'<span class="type '+characters[i].type+'"></span></lis>')
-  }
+    if(i != atual){ // Tirar da lista o pokemon atual
+        $(".characters").append('<li id="pokemon_'+characters[i].name+'" class="char-container">'
+          +'<img src="'+characters[i].img.default+'" alt="'+characters[i].name+'">'
+          +'<h2>'+characters[i].name+'</h2>'
+          +'<span class="type '+characters[i].type+'"></span></lis>')
+      }
+      
+    }
 
   characterChoice();
 }
@@ -615,6 +630,7 @@ function characterChoice(){
           if(characters[i].name === name){
             // find and save your chosen hero's data
             gameData.hero = characters[i];
+            atual = i;
           }
         }
         $('.stadium .hero').empty();
@@ -623,17 +639,7 @@ function characterChoice(){
         // build my hero
         populateChar($('.stadium .hero'), 'hero');
 
-        $('.attack-list').empty();
-        for(var i in gameData.hero.attacks){
-          // populate attack list
-           $('.attack-list').append('<li>'
-          +'<p class="attack-name"><strong>'
-          +gameData.hero.attacks[i].name
-          +'</strong></p><p class="attack-count"><small><span>'
-          +gameData.hero.attacks[i].avail.remaining+'</span>/'
-          +gameData.hero.attacks[i].avail.total+'</small>'
-          +'</p></li>');
-        }
+        populateAttack();
 
         // OPCOES
 
@@ -668,14 +674,25 @@ function attackEnemy(that, callback){
   // attack the enemy!!!
 
   // name of your attack
-  attackName = that.children('.attack-name').children('strong').text().toLowerCase();
+  attackName = that.attr("value").toLowerCase();
 
   for(var i in gameData.hero.attacks){
     if(gameData.hero.attacks[i].name === attackName){
       // get chosen attack data
-      curAttack = gameData.hero.attacks[i];
+      curAttack = $.extend(true, {}, gameData.hero.attacks[i]); // faz copia do objeto
     }
   }
+  equacao(that);
+ 
+}
+
+
+function attackEffect(that){
+   // attack enemy
+  console.log('Ataque '+curAttack.hp);
+  var efetividade_attack = attackMultiplier('hero', curAttack);
+  console.log('Efetividade '+efetividade_attack);
+  gameData.enemy.hp.current -= efetividade_attack;
 
   // if there are attacks left
   if(curAttack.avail.remaining > 0){
@@ -707,8 +724,6 @@ function attackEnemy(that, callback){
       'swing'
     );
 
-    // attack enemy
-    gameData.enemy.hp.current -= attackMultiplier('hero', curAttack);
 
     if(gameData.enemy.hp.current <= 0){
       // Enemy is dead
@@ -724,13 +739,10 @@ function attackEnemy(that, callback){
         defend(that);
       }, 1000);
 
-      opcoesShow();
+      //opcoesShow();
     }
   }
 }
-
-
-
 
 
 /////////////////////////////////////////////
@@ -833,11 +845,11 @@ function attackList(){
     }
   });
 
-  setTimeout(function(){
+ /* setTimeout(function(){
     // characters chosen - set & start the battle music
     $('audio.music').attr('src',music["battle"]);
     $('audio.music')[0].play();
-  },1500);
+  },1500);*/
 }
 
 
@@ -851,7 +863,7 @@ function modalControls(){
   $('.modal-out').click(function(){
     $(this).slideUp('400');
   });
-  $('.modal-in .close').click(function(e){
+  $('.modal-out .modal-in .close').click(function(e){
     $('.modal-out').slideUp('400');
   });
 
@@ -1011,3 +1023,18 @@ function enemySubstractHp(that){
       $('.stadium .enemy .data p span').text(gameData.enemy.hp.current);
       that.children('.attack-count').children('small').children('span').text(curAttack.avail.remaining);
 }
+
+function populateAttack(){
+   $('.attack-list').empty();
+    for(var i in gameData.hero.attacks){
+    // populate attack list
+       $('.attack-list').append('<li value="'+gameData.hero.attacks[i].name+'">'
+      +'<p class="attack-name"><strong>'
+      +gameData.hero.attacks[i].name
+      +'</strong></p><p class="attack-count"><small><span>'
+      +gameData.hero.attacks[i].avail.remaining+'</span>/'
+      +gameData.hero.attacks[i].avail.total+'</small>'
+      +'</p></li>');
+  }
+}
+

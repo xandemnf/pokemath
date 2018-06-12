@@ -523,11 +523,6 @@ window.onload = function() {
   
     });
 
-    $('body').onkeydown(function(){
-
-    })
-
-
 };
 
  

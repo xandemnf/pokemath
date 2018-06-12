@@ -150,7 +150,8 @@ strong {
   padding: 0px !important;
 }
 .stadium > section .char {
-  height: 175px;
+  /*height: 175px;*/
+  height: 145px;
   position: relative;
 }
 .stadium > section .char > * {

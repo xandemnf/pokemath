@@ -18,6 +18,8 @@
   
       <link rel="stylesheet" href="css/style_battle.css">
 
+      <link rel="stylesheet" href="css/style_matematica.css">
+
 
   
 </head>
@@ -27,9 +29,9 @@
   <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>HTML5 Canvas Pokemon Game</title>
+    <title>Pokemon Game</title>
     <!-- <script src="https://code.jquery.com/jquery-1.9.1.js"></script> -->
-    <script src="js/jquery-1.9.1.js"></script>
+    <!-- <script src="js/jquery-1.9.1.js"></script> -->
     <script src="canvas.pokemon.js"></script>
 
 </head>
@@ -37,7 +39,7 @@
     <div class="volume">
       <img src="img/audio-mute.png" id="mute" class="mute hidden"/>
       <img src="img/volume.png" id="som" class="mute"/>
-    <div>
+    </div>
     <div id="battle" style="display:none">
       
         <main>
@@ -60,8 +62,6 @@
           <audio class="music" loop></audio>
         </div>
        <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>-->
-        <script src='js/jquery.min.js'></script>
-        <script  src="js/index_battle.js"></script>
     </div>
     <div id="map">
       <canvas id="canvas" width="460" height="460"></canvas>
@@ -69,9 +69,6 @@
     <div id="battle" style="display:none">
       
         <main>
-          <div class="instructions">
-            <p>Choose your hero</p>
-          </div>
           
           <section class="characters"></section>
           
@@ -91,8 +88,8 @@
           <audio class="music" loop></audio>
         </div>
        <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>-->
-        <script src='js/jquery.min.js'></script>
-        <script  src="js/index_battle.js"></script>
+        <!-- <script src='js/jquery.min.js'></script> -->
+        <!-- <script src="js/index_battle.js"></script> -->
     </div>
     <div class="modal modal-out">
           <div class="modal-in">
@@ -102,13 +99,23 @@
           </div>
     </div>
 
+     <div class="modal-feedback">
+          <div class="modal-in-feedback">
+            <header></header>
+            <section></section>
+            <footer></footer>
+          </div>
+    </div>
+
+    <script src='js/jquery.min.js'></script>
+    <script src="js/index.js"></script>
+    <script src="js/index_battle.js"></script>
+    <script src="js/matematica.js"></script>
 
 </body>
 </html>
   
-  
 
-    <script  src="js/index.js"></script>
 
     <script  src="js/bootstrap.min.js"></script>
 
