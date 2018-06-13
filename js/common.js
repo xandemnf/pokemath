@@ -113,7 +113,7 @@ function moveAtaquesByKey(direction){
 		}
 	}
 	else if(direction == 'down'){
-		if($('#voltar').hasClass('hover')){
+		if($('#voltar').hasClass('hover')  && !$('.attack-list').hasClass('disabled')){
 			$('#voltar').removeClass('hover');
 			$('#attack-0').addClass('hover');
 			enter_tecla = $('#attack-0');

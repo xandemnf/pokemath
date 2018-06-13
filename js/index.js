@@ -391,6 +391,9 @@ window.onload = function() {
       enter_tecla.removeClass('hover');
       enter_tecla.trigger("click"); //enter para selecionar
     } 
+    else if (e.keyCode == "77" || e.keyCode == "109"){ // M ou m - MUTE
+      $('.mute:first').trigger("click");
+    }
   };
 
   // MOVE ON TOCH
@@ -529,8 +532,8 @@ window.onload = function() {
             inimigoAudio.play();
           }
           tela = "opcoes";
-          enter_tecla = $("#opcoes_ataque");
-          $('#opcoes_ataque').addClass('hover');
+          enter_tecla = $("#opcao_ataque");
+          $('#opcao_ataque').addClass('hover');
           stopMoveTouchAuto();
         }
       }
@@ -539,7 +542,7 @@ window.onload = function() {
 
     $('.mute').click(function(){
       console.log("chegou para audio");
-      if(mute == 0){
+      if(mute === 0){
         //mainTheme.pause();
         inimigoAudio.pause();
         mute = 1;

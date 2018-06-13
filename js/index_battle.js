@@ -20,18 +20,18 @@
 // VARIABLES
 /////////////////////////////////////////////
 var music = {},
-    typeSprite = '',
-    types = [],
-    gameData = {}
-    attackName = '',
-    curAttack = {},
-    randInt = 0,
-    enemyAttack = {},
-    characters = [],
-    defendProgressInt = null,
-    defendProgressComplete = 0,
-    progressInt = null,
-    progressComplete = 0;
+typeSprite = '',
+types = [],
+gameData = {}
+attackName = '',
+curAttack = {},
+randInt = 0,
+enemyAttack = {},
+characters = [],
+defendProgressInt = null,
+defendProgressComplete = 0,
+progressInt = null,
+progressComplete = 0;
 
 function buildVars(){
   // all the music for the game
@@ -77,13 +77,13 @@ function buildVars(){
 
   // available characters
   characters = [
-    {
-      index: 0,
-      name: "pikachu",
-      type: 'electric',
-      weakness: ['fighting'],
-      resistance: ['steel'],
-      img: {
+  {
+    index: 0,
+    name: "pikachu",
+    type: 'electric',
+    weakness: ['fighting'],
+    resistance: ['steel'],
+    img: {
         //default: "http://vignette2.wikia.nocookie.net/all-anime-characters/images/7/7b/Cute_pikachu_with_hat_by_mlpochea-d63xlom.png/revision/latest?cb=20150108111832",
         default: "img/pokemon/Cute_pikachu_with_hat_by_mlpochea-d63xlom.png",
         //front: "http://rs1263.pbsrc.com/albums/ii631/Pokemon-Vampire-Knight-lover/pikachu_.gif~c200",
@@ -96,42 +96,42 @@ function buildVars(){
         total: 500
       },
       attacks: [
-        {
-          name: "thunder jolt",
-          hp: randomNum(40,20),
-          avail: {
-            total: 30,
-            remaining: 30
-          },
-          level: 1
+      {
+        name: "thunder jolt",
+        hp: randomNum(40,20),
+        avail: {
+          total: 30,
+          remaining: 30
         },
-        {
-          name: "electro ball",
-          hp: randomNum(60,45),
-          avail: {
-            total: 10,
-            remaining: 10
-          },
-          level: 2
+        level: 1
+      },
+      {
+        name: "electro ball",
+        hp: randomNum(60,45),
+        avail: {
+          total: 10,
+          remaining: 10
         },
-        {
-          name: "volt tackle",
-          hp: randomNum(75,60),
-          avail: {
-            total: 5,
-            remaining: 5
-          },
-          level: 3
+        level: 2
+      },
+      {
+        name: "volt tackle",
+        hp: randomNum(75,60),
+        avail: {
+          total: 5,
+          remaining: 5
         },
-        {
-          name: "thunder crack",
-          hp: randomNum(160, 130),
-          avail: {
-            total: 2,
-            remaining: 2
-          },
-          level: 4
-        }
+        level: 3
+      },
+      {
+        name: "thunder crack",
+        hp: randomNum(160, 130),
+        avail: {
+          total: 2,
+          remaining: 2
+        },
+        level: 4
+      }
       ]
     },
     {
@@ -153,43 +153,43 @@ function buildVars(){
         total: 500
       },
       attacks: [
-        {
-          name: "ember",
-          hp: randomNum(40,20),
-          avail: {
-            total: 30,
-            remaining: 30
-          },
-          level: 1,
-          level: 1
+      {
+        name: "ember",
+        hp: randomNum(40,20),
+        avail: {
+          total: 30,
+          remaining: 30
         },
-        {
-          name: "flamethrower",
-          hp: randomNum(60,45),
-          avail: {
-            total: 10,
-            remaining: 10
-          },
-          level: 2
+        level: 1,
+        level: 1
+      },
+      {
+        name: "flamethrower",
+        hp: randomNum(60,45),
+        avail: {
+          total: 10,
+          remaining: 10
         },
-        {
-          name: "burning tail",
-          hp: randomNum(75,60),
-          avail: {
-            total: 5,
-            remaining: 5
-          },
-          level: 3
+        level: 2
+      },
+      {
+        name: "burning tail",
+        hp: randomNum(75,60),
+        avail: {
+          total: 5,
+          remaining: 5
         },
-        {
-          name: "fire spin",
-          hp: randomNum(160, 130),
-          avail: {
-            total: 2,
-            remaining: 2
-          },
-          level: 4
-        }
+        level: 3
+      },
+      {
+        name: "fire spin",
+        hp: randomNum(160, 130),
+        avail: {
+          total: 2,
+          remaining: 2
+        },
+        level: 4
+      }
       ]
     },
     {
@@ -211,42 +211,42 @@ function buildVars(){
         total: 500
       },
       attacks: [
-        {
-          name: "bubble",
-          hp: randomNum(40,20),
-          avail: {
-            total: 30,
-            remaining: 30
-          },
-          level: 1
+      {
+        name: "bubble",
+        hp: randomNum(40,20),
+        avail: {
+          total: 30,
+          remaining: 30
         },
-        {
-          name: "water gun",
-          hp: randomNum(60,45),
-          avail: {
-            total: 10,
-            remaining: 10
-          },
-          level: 2
+        level: 1
+      },
+      {
+        name: "water gun",
+        hp: randomNum(60,45),
+        avail: {
+          total: 10,
+          remaining: 10
         },
-        {
-          name: "shell attack",
-          hp: randomNum(75,60),
-          avail: {
-            total: 5,
-            remaining: 5
-          },
-          level: 3
+        level: 2
+      },
+      {
+        name: "shell attack",
+        hp: randomNum(75,60),
+        avail: {
+          total: 5,
+          remaining: 5
         },
-        {
-          name: "hydro pump",
-          hp: randomNum(160, 130),
-          avail: {
-            total: 2,
-            remaining: 2
-          },
-          level: 4
-        }
+        level: 3
+      },
+      {
+        name: "hydro pump",
+        hp: randomNum(160, 130),
+        avail: {
+          total: 2,
+          remaining: 2
+        },
+        level: 4
+      }
       ]
     },
     {
@@ -273,42 +273,42 @@ function buildVars(){
         total: 500
       },
       attacks: [
-        {
-          name: "tackle",
-          hp: randomNum(40,20),
-          avail: {
-            total: 30,
-            remaining: 30
-          },
-          level: 1
+      {
+        name: "tackle",
+        hp: randomNum(40,20),
+        avail: {
+          total: 30,
+          remaining: 30
         },
-        {
-          name: "vine whip",
-          hp: randomNum(60,45),
-          avail: {
-            total: 10,
-            remaining: 10
-          },
-          level: 2
+        level: 1
+      },
+      {
+        name: "vine whip",
+        hp: randomNum(60,45),
+        avail: {
+          total: 10,
+          remaining: 10
         },
-        {
-          name: "razor leaf",
-          hp: randomNum(75,60),
-          avail: {
-            total: 5,
-            remaining: 5
-          },
-          level: 3
+        level: 2
+      },
+      {
+        name: "razor leaf",
+        hp: randomNum(75,60),
+        avail: {
+          total: 5,
+          remaining: 5
         },
-        {
-          name: "solar beam",
-          hp: randomNum(160, 130),
-          avail: {
-            total: 2,
-            remaining: 2
-          },
-          level: 4
-        }
+        level: 3
+      },
+      {
+        name: "solar beam",
+        hp: randomNum(160, 130),
+        avail: {
+          total: 2,
+          remaining: 2
+        },
+        level: 4
+      }
       ]
     },
     {
@@ -330,46 +330,46 @@ function buildVars(){
         total: 500
       },
       attacks: [
-        {
-          name: "low kick",
-          hp: randomNum(40,20),
-          avail: {
-            total: 30,
-            remaining: 30
-          },
-          level: 1
+      {
+        name: "low kick",
+        hp: randomNum(40,20),
+        avail: {
+          total: 30,
+          remaining: 30
         },
-        {
-          name: "karate chop",
-          hp: randomNum(60,45),
-          avail: {
-            total: 10,
-            remaining: 10
-          },
-          level: 2
+        level: 1
+      },
+      {
+        name: "karate chop",
+        hp: randomNum(60,45),
+        avail: {
+          total: 10,
+          remaining: 10
         },
-        {
-          name: "seismic toss",
-          hp: randomNum(75,60),
-          avail: {
-            total: 5,
-            remaining: 5
-          },
-          level: 3
+        level: 2
+      },
+      {
+        name: "seismic toss",
+        hp: randomNum(75,60),
+        avail: {
+          total: 5,
+          remaining: 5
         },
-        {
-          name: "hundred furious punches",
-          hp: randomNum(160, 130),
-          avail: {
-            total: 2,
-            remaining: 2
-          },
-          level: 4
-        }
+        level: 3
+      },
+      {
+        name: "hundred furious punches",
+        hp: randomNum(160, 130),
+        avail: {
+          total: 2,
+          remaining: 2
+        },
+        level: 4
+      }
       ]
     }
-  ];
-}
+    ];
+  }
 
 
 
@@ -523,17 +523,17 @@ function resetGame(){
   //characterChoice();
 
   $('#voltar').addClass('hover');
-  opcoesShow();
-  pokemonPlayerAtual();
-  enemyFind();
-  opcoesPlayer();
-}
+    //opcoesShow();
+    pokemonPlayerAtual();
+    enemyFind();
+    opcoesPlayer();
+  }
 resetGame();
 $('.logo').click(function(){resetGame();});
 
 
 function pokemonPlayerAtual(){
-  
+
   gameData.hero = characters[atual];
   
   // build my hero
@@ -565,8 +565,8 @@ function opcoesPlayer(){
 }
 
 function enemyFind(){
-        var i = pokemonEncontrado;
-        gameData.enemy = characters[i];
+  var i = pokemonEncontrado;
+  gameData.enemy = characters[i];
         /*// step 2: choose your enemy
         for(var i in characters){
           if(characters[i].name === name){
@@ -599,21 +599,20 @@ function enemyFind(){
         // update step to attack phase and bind click events
         gameData.step = 3;
         attackList();
-}
-
-function pokemonChoice(){
-  $('.characters').empty();
-  for(var i in characters){
-    // build the character list
-    if(i != atual){ // Tirar da lista o pokemon atual
-        $(".characters").append('<li id="pokemon_'+characters[i].name+'" class="char-container">'
-          +'<img src="'+characters[i].img.default+'" alt="'+characters[i].name+'">'
-          +'<h2>'+characters[i].name+'</h2>'
-          +'<span class="type '+characters[i].type+'"></span></lis>')
       }
-      
-    }
 
+  function pokemonChoice(){
+        $('.characters').empty();
+        for(var i in characters){
+    // build the character list
+          if(characters[i].index != atual){ // Tirar da lista o pokemon atual
+            $(".characters").append('<li id="pokemon_'+characters[i].name+'" class="char-container">'
+              +'<img src="'+characters[i].img.default+'" alt="'+characters[i].name+'">'
+              +'<h2>'+characters[i].name+'</h2>'
+              +'<span class="type '+characters[i].type+'"></span></lis>')
+          }
+
+        }
   characterChoice();
 }
 
@@ -632,7 +631,8 @@ function characterChoice(){
           if(characters[i].name === name){
             // find and save your chosen hero's data
             gameData.hero = characters[i];
-            atual = i;
+            gameData.hero.index = i;
+            atual = gameData.hero.index;
           }
         }
         $('.stadium .hero').empty();
@@ -664,7 +664,7 @@ function characterChoice(){
         gameData.step = 3;
         attackList();
         //$('.characters .char-container').trigger('click');
-  });
+      });
 }
 
 
@@ -679,24 +679,31 @@ function attackEnemy(that, callback){
 
   // name of your attack
   attackName = that.attr("value").toLowerCase();
-
+  var index = -1;
   for(var i in gameData.hero.attacks){
     if(gameData.hero.attacks[i].name === attackName){
       // get chosen attack data
       curAttack = $.extend(true, {}, gameData.hero.attacks[i]); // faz copia do objeto
+      curAttack.hp = attackMultiplier('hero', curAttack); // Valor do a depender do tipo do pokemon inimigo
+      index_hero = i;
+      break;
     }
   }
-  equacao(that);
- 
+  equacao(that,index_hero);
+
 }
 
 
-function attackEffect(that){
+function attackEffect(that,index_hero){
    // attack enemy
-  console.log('Ataque '+curAttack.hp);
-  var efetividade_attack = attackMultiplier('hero', curAttack);
-  console.log('Efetividade '+efetividade_attack);
-  gameData.enemy.hp.current -= efetividade_attack;
+   console.log('Ataque '+ curAttack.hp);
+   var efetividade_attack = curAttack.hp;
+   console.log('Efetividade '+ efetividade_attack);
+   gameData.enemy.hp.current -= efetividade_attack;
+   if(index_hero > 0){
+      gameData.hero.attacks[index_hero] = curAttack;
+    }
+
 
   // if there are attacks left
   if(curAttack.avail.remaining > 0){
@@ -704,38 +711,37 @@ function attackEffect(that){
     $('.attack-list').addClass('disabled');
 
     $('.hero .char img').animate(
-      {
-        'margin-left': '-30px',
-        'margin-top': '10px'
-      },
-      50,
-      'swing'
+    {
+      'margin-left': '-30px',
+      'margin-top': '10px'
+    },
+    50,
+    'swing'
     );
     $('.hero .char img').animate(
-      {
-        'margin-left': '70px',
-        'margin-top': '-10px'
-      },
-      50,
-      'swing'
+    {
+      'margin-left': '70px',
+      'margin-top': '-10px'
+    },
+    50,
+    'swing'
     );
     $('.hero .char img').animate(
-      {
-        'margin-left': '70px',
-        'margin-top': '0px'
-      },
-      50,
-      'swing'
+    {
+      'margin-left': '70px',
+      'margin-top': '0px'
+    },
+    50,
+    'swing'
     );
 
 
     if(gameData.enemy.hp.current <= 0){
       // Enemy is dead
-      enemyDied(that);
+      enemyDied(that,index_hero);
     }else{
       // enemy is still alive (Attack!!!)
-
-      enemySubstractHp(that);
+      enemySubstractHp(that,index_hero);
 
       // wait a second to recover
       setTimeout(function(){
@@ -759,28 +765,28 @@ function defend(that){
 
   // enemy attack animation sequence
   $('.enemy .char img').animate(
-    {
-      'margin-right': '-30px',
-      'margin-top': '-10px'
-    },
-    50,
-    'swing'
+  {
+    'margin-right': '-30px',
+    'margin-top': '-10px'
+  },
+  50,
+  'swing'
   );
   $('.enemy .char img').animate(
-    {
-      'margin-right': '30px',
-      'margin-top': '10px'
-    },
-    50,
-    'swing'
+  {
+    'margin-right': '30px',
+    'margin-top': '10px'
+  },
+  50,
+  'swing'
   );
   $('.enemy .char img').animate(
-    {
-      'margin-right': '0px',
-      'margin-top': '0px'
-    },
-    50,
-    'swing'
+  {
+    'margin-right': '0px',
+    'margin-top': '0px'
+  },
+  50,
+  'swing'
   );
 
   // attack the hero
@@ -789,7 +795,12 @@ function defend(that){
   if(gameData.hero.hp.current <= 0){
     // ding dong the hero's dead
 
-    heroDied();
+    gameData.hero.hp.current = 0;
+    substractHpHero();
+    setTimeout(function(){
+      heroDied();
+    }, 1300); // espera 1,3 segundo para avisar que morreu
+    
 
     //resetGame();
   }else{
@@ -798,8 +809,25 @@ function defend(that){
     // subtract attack from enemy count
     gameData.enemy.attacks[randInt].avail.remaining--;
 
-    // health bar animation
-    defendProgressInt = setInterval(function(){
+    substractHpHero();
+
+    // Tira o disabled da lista de attack
+    setTimeout(function(){
+      if(defendProgressComplete && progressComplete){
+        $('.attack-list').removeClass('disabled');
+      }else{
+        setHP();
+        $('.attack-list').removeClass('disabled');
+      }
+    }, 500);
+    
+  }
+}
+
+
+function substractHpHero(){
+   // health bar animation
+   defendProgressInt = setInterval(function(){
       // get current val of health bar
       var val = $('.stadium .hero progress').val();
       val--;
@@ -814,22 +842,10 @@ function defend(that){
       }
     },1);
 
-    // update health value
-    $('.stadium .hero .data p span').text(gameData.hero.hp.current);
+     // update health value
+     $('.stadium .hero .data p span').text(gameData.hero.hp.current);
 
-    setTimeout(function(){
-      if(defendProgressComplete && progressComplete){
-        $('.attack-list').removeClass('disabled');
-      }else{
-        setHP();
-        $('.attack-list').removeClass('disabled');
-      }
-    }, 500);
-  }
-}
-
-
-
+   }
 
 
 /////////////////////////////////////////////
@@ -869,6 +885,9 @@ function modalControls(){
   });
   $('.modal-out .modal-in .close').click(function(e){
     $('.modal-out').slideUp('400');
+    if(tela == 'hero_died'){
+      opcoesShow();
+    }
   });
 
   $('.modal-in').click(function(e){
@@ -885,70 +904,72 @@ function clearModal(){
 }
 
 function opcoesPlayerClick(){
-$('.opcoes-list li').click(function(){
+  $('.opcoes-list li').click(function(){
     // attack choice is clicked
     var opcao = $(this).attr('id');
     console.log('chegou no click das opcoes');
     switch(opcao){
       case 'opcao_ataque':
-        $('.hover').removeClass('hover');
-        tela = 'ataques';
-        show(['attack-list','voltar']);
-        $('#voltar').addClass('hover');
-        enter_tecla = $('#voltar');
+      $('.hover').removeClass('hover');
+      tela = 'ataques';
+      show(['attack-list','voltar']);
+      $('#voltar').addClass('hover');
+      enter_tecla = $('#voltar');
       break;
       case 'opcao_pokemons':
-        $('.hover').removeClass('hover');
-        tela = 'pokemons';
-        opcoesPokemon();
-        $('#voltar').addClass('hover');
-        enter_tecla = $('#voltar');
+      $('.hover').removeClass('hover');
+      tela = 'pokemons';
+      opcoesPokemon();
+      $('#voltar').addClass('hover');
+      enter_tecla = $('#voltar');
       break;
       case 'opcao_fugir':
-        clearModal();
-        $('.modal-in header').append('<h1>Você fugiu da batalha!</h1><span class="close">x</span>');
-        $('.modal-in section').append('<p>Não desanime!! Na próxima você consegue!');
-        $('.modal-out').slideDown('400');
-        modalControls();
-        renderMap();
+      clearModal();
+      $('.modal-in header').append('<h1>Você fugiu da batalha!</h1><span class="close">x</span>');
+      $('.modal-in section').append('<p>Não desanime!! Na próxima você consegue!');
+      $('.modal-out').slideDown('400');
+      enter_tecla = $('.close');
+      modalControls();
+      renderMap();
       break;
       case 'opcao_pegar':
       break;
     }
     
   });
-$('.voltar').click(function(){
+  $('.voltar').click(function(){
     opcoesShow();
-    tela = 'opcoes';
-    enter_tecla = $('#opcao_ataque');
-    enter_tecla.addClass('hover');
-});
+    
+  });
 
-$('.continuar').click(function(){
+  $('.continuar').click(function(){
     clearModal();
     $('.modal-in header').append('<h1>Você Ganhou </h1><span class="close">x</span>');
     $('.modal-in section').append('<p>Parabéns!</p>');
     $('.modal-out').slideDown('400');
     modalControls();
     renderMap();
-});
+  });
 
 }
 
 function renderMap(){
-      $('#battle').hide();
-      $('#canvas').show();
-      pause_map = 0;
-      inimigoAudio.pause();
-      tela = 'mapa';
-  }
+  $('#battle').hide();
+  $('#canvas').show();
+  pause_map = 0;
+  inimigoAudio.pause();
+  tela = 'mapa';
+}
 
 function continuarShow(){
-    show('continuar');
+  show('continuar');
 }
 
 function opcoesShow(){
-    show('opcoes-list');
+  tela = 'opcoes';
+  enter_tecla = $('#opcao_ataque');
+  enter_tecla.addClass('hover');
+  show('opcoes-list');
 }
 
 function show(e){
@@ -978,25 +999,29 @@ function show(e){
 }
 
 function heroDied(){
-    clearModal();
+  clearModal();
 
-    $('.modal-in header').append('<h1>'+ gameData.hero.name +' morreu! :( </h1><span class="close">x</span>');
-    $('.modal-in section').append('<p>Não desanime!! Escolha outro pokemon e continue lutando!');
-    $('.modal-out').slideDown('400');
+  $('.modal-in header').append('<h1>'+ gameData.hero.name +' morreu! :( </h1><span class="close">x</span>');
+  $('.modal-in section').append('<p>Não desanime!! Escolha outro pokemon e continue lutando!');
+  $('.modal-out').slideDown('400');
+  enter_tecla = $('.close');
+  tela = 'hero_died'; // indica que ao clicar close vai para tela de opcoes
     //$('#battle').hide();
     //$('#canvas').show();
     modalControls();
-   // $('#pokemon_'+gameData.hero.name).remove(); 
-    characters.splice(gameData.hero.index, 1); //Remove o pokemon da lista
-    gameData.hero.hp.current = 0;
-    opcoesPokemon();
+ // $('#pokemon_'+gameData.hero.name).remove(); 
+  characters.splice(gameData.hero.index, 1); //Remove o pokemon da lista
+  gameData.hero.hp.current = 0;
+  //opcoesPokemon();
+  //opcoesShow();
 }
 
 
-function enemyDied(that){
+function enemyDied(that,index_hero){
   continuarShow();
   gameData.enemy.hp.current = 0;
-  enemySubstractHp(that);
+  enemySubstractHp(that,index_hero);
+
   // clear the stadium of the dead
   //remove aqui$('.enemy').empty();
   // show the available characters
@@ -1016,9 +1041,10 @@ function opcoesPokemon(){
   pokemonChoice();
 }
 
-function enemySubstractHp(that){
+function enemySubstractHp(that,index_hero){
   // subtract attack
-      curAttack.avail.remaining--;
+  curAttack.avail.remaining--;
+  gameData.hero.attacks[index_hero].avail.remaining = curAttack.avail.remaining;
 
       // interval to animate health bar
       progressInt = setInterval(function(){
@@ -1040,11 +1066,11 @@ function enemySubstractHp(that){
       that.children('.attack-count').children('small').children('span').text(curAttack.avail.remaining);
 }
 
-function populateAttack(){
-   $('.attack-list').empty();
-    for(var i in gameData.hero.attacks){
+    function populateAttack(){
+     $('.attack-list').empty();
+     for(var i in gameData.hero.attacks){
     // populate attack list
-       $('.attack-list').append('<li id="attack-'+i+'" value="'+gameData.hero.attacks[i].name+'">'
+    $('.attack-list').append('<li id="attack-'+i+'" value="'+gameData.hero.attacks[i].name+'">'
       +'<p class="attack-name"><strong>'
       +gameData.hero.attacks[i].name
       +'</strong></p><p class="attack-count"><small><span>'
