@@ -72,7 +72,7 @@ function alternativasClick(that, index_hero){
 	    		$(this).addClass('hover');
 	    		return;
 	    	}
-	    	curAttack.hp = Math.floor(curAttack.hp*0.8);
+	    	curAttack.hp = Math.floor(curAttack.hp*0.5);
 	    	//$(this).removeClass('alternativa');
 	    	$(this).addClass('disabled');
 	    	$(this).addClass('hover');
