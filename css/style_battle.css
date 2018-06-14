@@ -100,7 +100,7 @@ strong {
   cursor: pointer;
   transition: background 0.3s ease;
 }
-.continuar li:hover {
+.continuar li:hover,.continuar li.hover {
   background: #EEE;
 }
 
@@ -253,6 +253,16 @@ strong {
 }
 .attack-list li:hover, .attack-list li.hover {
   background: #EEE;
+}
+
+.attack-list li.disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.attack-list li.disabled:hover, .attack-list li.disabled.hover {
+  background: #EEE;
+  opacity: 0.5;
 }
 
 .opcoes-list {

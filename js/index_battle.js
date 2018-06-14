@@ -407,10 +407,6 @@ function populateChar(container,character){
     facing = 'back';
   }
 
-  if(gameData[character].name == 'machop' && facing == 'back'){
-    //classe = 'machop_back';
-  }
-
   // build the character
   //container.empty();
   container.append('<section class="char col-12">'
@@ -490,11 +486,10 @@ function setHP(){
 
 
 
-
 /////////////////////////////////////////////
 // RESET
 /////////////////////////////////////////////
-function resetGame(){
+function initGame(){
   // set default values for game variables
   buildVars();
 
@@ -527,9 +522,34 @@ function resetGame(){
     pokemonPlayerAtual();
     enemyFind();
     opcoesPlayer();
-  }
-resetGame();
-$('.logo').click(function(){resetGame();});
+}
+
+/////////////////////////////////////////////
+// RESET
+/////////////////////////////////////////////
+function resetGame(){
+  // set default values for game variables
+  //buildVars();
+
+  // clear the stadium
+  $('.enemy').empty();
+
+  // reset
+  $('.attack-list li').unbind('click');
+  //$('.attack-list').empty();
+  $('.stadium .enemy').css({'padding':'0'});
+
+  // empty characters
+  $('.characters').empty();
+
+  $('#voltar').addClass('hover');
+    opcoesShow();
+    //pokemonPlayerAtual();
+    enemyFind();
+    opcoesPlayer();
+}
+initGame();
+//$('.logo').click(function(){resetGame();});
 
 
 function pokemonPlayerAtual(){
@@ -857,6 +877,9 @@ function attackList(){
   console.log('chegou ataque' + gameData.step);
   $('.attack-list li').click(function(){
     // attack choice is clicked
+    if($(this).hasClass('disabled')){
+      return; // se tiver disabilitado
+    }
     var doAttack = 1;
 
     if(gameData.step === 3){
@@ -949,6 +972,7 @@ function opcoesPlayerClick(){
     $('.modal-out').slideDown('400');
     modalControls();
     renderMap();
+    enter_tecla = $('.close');
   });
 
 }
@@ -963,6 +987,8 @@ function renderMap(){
 
 function continuarShow(){
   show('continuar');
+  tela = 'continuar';
+  enter_tecla = $('.continuar');
 }
 
 function opcoesShow(){
@@ -1018,7 +1044,6 @@ function heroDied(){
 
 
 function enemyDied(that,index_hero){
-  continuarShow();
   gameData.enemy.hp.current = 0;
   enemySubstractHp(that,index_hero);
 
@@ -1034,6 +1059,8 @@ function enemyDied(that,index_hero){
   //gameData.enemy = {};
   // unbind click for reset
   $('.attack-list li').unbind('click');
+  $('.continuar li').addClass('hover');
+  continuarShow();
 }
 
 function opcoesPokemon(){
@@ -1046,6 +1073,9 @@ function enemySubstractHp(that,index_hero){
   curAttack.avail.remaining--;
   gameData.hero.attacks[index_hero].avail.remaining = curAttack.avail.remaining;
 
+  if(curAttack.avail.remaining == 0){
+    that.addClass('disabled');
+  }
       // interval to animate health bar
       progressInt = setInterval(function(){
         // get current value of health bar

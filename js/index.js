@@ -388,8 +388,11 @@ window.onload = function() {
       $('.close').trigger("click"); //esc fecha modal
     }
     else if (e.keyCode == "13"){
-      enter_tecla.removeClass('hover');
-      enter_tecla.trigger("click"); //enter para selecionar
+      if(!enter_tecla.hasClass('disabled')){
+        enter_tecla.removeClass('hover');
+        enter_tecla.trigger("click"); //enter para selecionar
+      }
+
     } 
     else if (e.keyCode == "77" || e.keyCode == "109"){ // M ou m - MUTE
       $('.mute:first').trigger("click");
@@ -526,6 +529,7 @@ window.onload = function() {
           resetGame();
           $('#canvas').fadeOut(1000);
           $('#battle').slideDown(3000);
+          opcoesShow();
           pause_map=1;
           if(mute == 0){
             inimigoAudio.currentTime = 0; //Reinicia
@@ -558,6 +562,7 @@ window.onload = function() {
       }
   
     });
+
 
 };
 
