@@ -8,6 +8,7 @@ function equacao(that,index_hero){
 	console.log('chegou equacao');
 	var ataque_nivel = that.attr('id');
 	selectNivel(ataque_nivel);
+	var msg_feedback_negativo = feedbackPorNivel(ataque_nivel);
 	var questao_index = randomNum(questoes.length); 
 	questao = questoes[questao_index];
 	clearModal1();
@@ -21,7 +22,7 @@ function equacao(that,index_hero){
 		+'<p id="feedback4" class="feedback"></p>'
 		+'<img src="img/pokemon/feedback-negativo.gif" />'
 		+'</div>');
-	$('.modal-in header').append('<h2 class="feedback_negativo">Não simplificou, tenta novamente!</h2>');
+	$('.modal-in header').append('<h2 class="feedback_negativo">'+msg_feedback_negativo+'</h2>');
 	$('.modal-in header').append('<h2 class="dica">'+questao.dica+'</h2>');
 	$('.modal-in section').append(
 		'<ul class="alternativas-list">'
@@ -96,7 +97,7 @@ function alternativasClick(that, index_hero){
 	    if(alternativa === "resposta"){
 	    	resposta_certa = 1;
 	    	clearModalFeedback()
-	    	$('.modal-in-feedback header').append('<h1 class="green">Parabéns você acertou!</h1>');
+	    	$('.modal-in-feedback header').append('<h1 class="green">Parabéns, você acertou!</h1>');
 
 	    	$('.modal-in-feedback header').append('<div id="feedbacks_correto">'
 				+'<p id="feedback1_correto" class="feedback_correto"></p>'
@@ -160,7 +161,7 @@ function feedbackQuestao(alternativa,modal){
 	$('.feedback').hide();
 	$('.feedback_negativo').hide();
 	$('.dica').hide();
-	var primeiro = $(alternativa).children().first();
+	var primeiro = $(alternativa).find('b').first();
 	var segundo = $(primeiro).next();
 	var terceiro = $(segundo).next();
 	var quarto = $(terceiro).next();
@@ -195,7 +196,21 @@ function selectNivel(nivel){
 		questoes = questoes3;
 	}
 	else if(nivel == 'attack-3'){
-		questoes = questoes1;
+		questoes = questoes4;
 	}
 }
 
+function feedbackPorNivel(nivel){
+	if(nivel == 'attack-0'){
+		return 'Não simplificou, tente novamente!';
+	}
+	else if(nivel == 'attack-1'){
+		return 'Não simplificou, tente novamente!';
+	}
+	else if(nivel == 'attack-2'){
+		return 'Não simplificou, tente novamente!';
+	}
+	else if(nivel == 'attack-3'){
+		return '';
+	}
+}

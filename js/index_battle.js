@@ -318,7 +318,7 @@ function opcoesPlayer(){
 
 function enemyFind(){
   var i = pokemonEncontrado;
-  gameData.enemy = characters[i];
+  gameData.enemy = $.extend(true, {}, characters[i]); // copia objeto
         /*// step 2: choose your enemy
         for(var i in characters){
           if(characters[i].name === name){
@@ -441,7 +441,7 @@ function attackEnemy(that, callback){
       break;
     }
   }
-  
+
   equacao(that,index_hero);
 
 }
@@ -729,7 +729,7 @@ function continuarShow(){
 }
 
 function opcoesShow(){
-  $('.close').trigger("click"); // Fechar outra modal caso esteja aberta
+  //$('.close').trigger("click"); // Fechar outra modal caso esteja aberta
   tela = 'opcoes';
   enter_tecla = $('#opcao_ataque');
   enter_tecla.addClass('hover');

@@ -34,7 +34,7 @@
 .alternativas-list li {
   width: 50%;
   text-align: center;
-  padding: 25px 0;
+  padding: 5px 0;
   box-sizing: border-box;
   border: 1px solid #818182;
   cursor: pointer;
@@ -47,6 +47,12 @@
 .alternativas-list li:hover, .alternativas-list li.hover {
   background: #fff;
   color:#000;
+}
+
+.alternativas-list p{
+  margin-top: 5px;
+  text-align: left;
+  margin-left: 2px;
 }
 
 #feedbacks{
@@ -75,12 +81,16 @@
 
 .feedback, .feedback_correto{
   display: none;
-  font-size: 18pt;
+  font-size: 16pt;
   margin-bottom: 5px;
 }
 
 .feedback b > b{
   color: red;
+}
+
+.feedback b > a{
+  color: #007bff !important;
 }
 
 .feedback i, .feedback_correto i {

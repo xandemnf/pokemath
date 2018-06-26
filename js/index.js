@@ -531,6 +531,7 @@ window.onload = function() {
           resetGame();
           $('#canvas').fadeOut(1000);
           $('#battle').slideDown(3000);
+          $('.close').trigger("click");
           opcoesShow();
           pause_map=1;
           if(mute == 0){

@@ -313,13 +313,15 @@ strong {
 }
 .modal-out .modal-in {
   position: fixed;
-  top: 15vh;
+  top: 5vh;
   left: 0;
   right: 0;
   width: 500px;
-  height: 500px;
+  max-height: 600px;
   margin: 0 auto;
   background: #FFFAFA;
+  height: auto;
+  padding-bottom: 10px;
 }
 .modal-out .modal-in header {
   position: relative;
