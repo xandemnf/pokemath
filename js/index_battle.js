@@ -90,7 +90,7 @@ function buildVars(){
 // min is optional
 function randomNum(max, min){
   // generate a random number
-
+  console.log('chegou random');
   // min not required
   if(min === undefined || min === '' || min === null){
     // min default value
@@ -441,6 +441,7 @@ function attackEnemy(that, callback){
       break;
     }
   }
+  
   equacao(that,index_hero);
 
 }
@@ -451,9 +452,9 @@ function attackEffect(that,index_hero){
    console.log('Ataque '+ curAttack.hp);
    var efetividade_attack = curAttack.hp;
    console.log('Efetividade '+ efetividade_attack);
-   gameData.enemy.hp.current -= efetividade_attack;
+    gameData.enemy.hp.current -= efetividade_attack;
    if(index_hero > 0){
-      gameData.hero.attacks[index_hero] = curAttack;
+      //gameData.hero.attacks[index_hero] = curAttack;
     }
 
 
@@ -605,7 +606,11 @@ function substractHpHero(){
 /////////////////////////////////////////////
 function attackList(){
   // attack instantiation
-  $('.attack-list').removeClass('disabled');
+  if(gameData.hero.hp.current > 0){
+    $('.attack-list').removeClass('disabled');
+  }else{
+    $('.attack-list').addClass('disabled');
+  }
   console.log('chegou ataque' + gameData.step);
   $('.attack-list li').click(function(){
     // attack choice is clicked
@@ -724,6 +729,7 @@ function continuarShow(){
 }
 
 function opcoesShow(){
+  $('.close').trigger("click"); // Fechar outra modal caso esteja aberta
   tela = 'opcoes';
   enter_tecla = $('#opcao_ataque');
   enter_tecla.addClass('hover');
@@ -759,14 +765,14 @@ function show(e){
 function heroDied(){
   clearModal();
 
-  $('.modal-in header').append('<h1>'+ gameData.hero.name +' morreu! :( </h1><span class="close">x</span>');
+  $('.modal-in header').append('<h1>'+ gameData.hero.name +' desmaiou! :( </h1><span class="close">x</span>');
   $('.modal-in section').append('<p>Não desanime!! Escolha outro pokemon e continue lutando!');
   $('.modal-out').slideDown('400');
   enter_tecla = $('.close');
   tela = 'hero_died'; // indica que ao clicar close vai para tela de opcoes
     //$('#battle').hide();
     //$('#canvas').show();
-    modalControls();
+  modalControls();
  // $('#pokemon_'+gameData.hero.name).remove(); 
   characters_player.splice(gameData.hero.index, 1); //Remove o pokemon da lista
   gameData.hero.hp.current = 0;
@@ -808,27 +814,30 @@ function enemySubstractHp(that,index_hero){
   if(curAttack.avail.remaining == 0){
     that.addClass('disabled');
   }
-      // interval to animate health bar
-      progressInt = setInterval(function(){
-        // get current value of health bar
-        var val = $('.stadium .enemy progress').val();
-        val--;
+      
+      if(curAttack.hp > 0){ // Animacao barra hp, apenas se a efetividade do ataque for maior que zero
+        // interval to animate health bar
+        progressInt = setInterval(function(){
+          // get current value of health bar
+          var val = $('.stadium .enemy progress').val();
+          val--;
 
-        // update health bar value
-        $('.stadium .enemy progress').val(val);
-        if(val === -1 || val === gameData.enemy.hp.current){
-          // if you've hit your target clear interval
-          clearInterval(progressInt);
-          progressComplete = 1;
-        }
-      },1);
+          // update health bar value
+          $('.stadium .enemy progress').val(val);
+          if(val === -1 || val === gameData.enemy.hp.current){
+            // if you've hit your target clear interval
+            clearInterval(progressInt);
+            progressComplete = 1;
+          }
+        },1);
+      }
 
       // update health numbers
       $('.stadium .enemy .data p span').text(gameData.enemy.hp.current);
       that.children('.attack-count').children('small').children('span').text(curAttack.avail.remaining);
 }
 
-    function populateAttack(){
+function populateAttack(){
      $('.attack-list').empty();
      for(var i in gameData.hero.attacks){
     // populate attack list

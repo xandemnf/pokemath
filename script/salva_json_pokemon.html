@@ -9,7 +9,7 @@
 </body>
 </html>
 
-<script src='js/jquery.min.js'></script>
+<script src='../js/jquery.min.js'></script>
 
 <script>
 
@@ -313,7 +313,7 @@ var dados = {c : JSON.stringify(characters)};
 	$.ajax({
 		type: 'POST',
 		//dataType: 'json',
-		url: 'salvar.php',
+		url: 'salvar_pokemon.php',
 		async: true,
 		data: dados,
 		success: function(response) {

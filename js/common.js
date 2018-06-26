@@ -10,6 +10,11 @@ var mainTheme;
 var inimigoAudio;
 var tela = 'mapa';
 var enter_tecla;
+questoes = [];
+questoes1 = [];
+questoes2 = [];
+questoes3 = [];
+questoes4 = [];
 
 var atual = pikachu;
 

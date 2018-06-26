@@ -316,8 +316,8 @@ strong {
   top: 15vh;
   left: 0;
   right: 0;
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   margin: 0 auto;
   background: #FFFAFA;
 }
@@ -339,7 +339,7 @@ strong {
 }
 .modal-out .modal-in section {
   box-sizing: border-box;
-  padding: 25px 3%;
+  padding: 0px 3%;
 }
 
 .machop_back{

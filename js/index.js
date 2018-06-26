@@ -6,6 +6,8 @@
 
 window.onload = function() {
   "use strict";
+
+  populateQuestoes();
   var directionMove = "parado";
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
@@ -21,12 +23,12 @@ window.onload = function() {
   var modifier = 100;
   var score = 0;
   var pokemons_position = [
-                          [4,0,0,0,2,0,0,0,0,0,1],
-                          [0,0,3,0,0,0,4,0,0,0,0],
-                          [0,2,0,0,0,0,1,0,0,0,0],
-                          [0,0,0,1,0,0,0,3,0,3,0],
-                          [0,0,0,0,0,2,0,0,0,0,0],
-                          [3,0,0,0,0,0,0,0,0,0,2]];
+                          [4,-1,-1,-1,-1,-1,-1,-1,-1,-1,0],
+                          [-1,-1,3,-1,-1,-1,4,-1,-1,-1,-1],
+                          [-1,2,-1,-1,-1,-1,1,-1,-1,-1,-1],
+                          [-1,-1,-1,1,0,-1,-1,-1,-1,3,-1],
+                          [-1,-1,-1,1,-1,-1,2,-1,-1,-1,-1],
+                          [3,-1,-1,-1,-1,-1,-1,-1,-1,-1,2]];
 
   //terrain image
   var terrainImage = new Image();
@@ -523,9 +525,9 @@ window.onload = function() {
         console.log("graminha");
         x = Math.trunc(x) - 5;
         y = Math.trunc(y) - 10;
-        if(pokemons_position[y][x] > 0){
+        if(pokemons_position[y][x] >= 0){
           pokemonEncontrado = pokemons_position[y][x];
-          pokemons_position[y][x] = 0;
+          //pokemons_position[y][x] = 0;
           resetGame();
           $('#canvas').fadeOut(1000);
           $('#battle').slideDown(3000);
@@ -562,6 +564,46 @@ window.onload = function() {
       }
   
     });
+
+    function populateQuestoes(){
+    // available questoes
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: 'questoes1.php',
+        async: true,
+        success: function(response) {
+         questoes1 = response;
+        }
+      });
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: 'questoes2.php',
+        async: true,
+        success: function(response) {
+         questoes2 = response;
+        }
+      });
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: 'questoes3.php',
+        async: true,
+        success: function(response) {
+         questoes3 = response;
+        }
+      });
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: 'questoes4.php',
+        async: true,
+        success: function(response) {
+         questoes4 = response;
+        }
+      });
+    }
 
 
 };

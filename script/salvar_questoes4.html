@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+</body>
+</html>
+
+<script src='../js/jquery.min.js'></script>
+
+<script>
+
+questoes1 = [
+{
+    pergunta: "Como simplificar a equação:",
+    equacao: ' x + 2 = 0',
+    dica: 'Lembre-se você quer fazer o 2 desaparecer!',
+    alternativas: [
+    {
+        descricao: "Somar 2 nos dois lados da equação",
+        gabarito: '',
+        feedback1: 'x + 2 <b>+ 2</b> = 0 <b> + 2</b>',
+        feedback2: 'x + <b>4</b> = <b>2</b>',
+        feedback3: '',
+        feedback4: ''
+
+    },
+    {
+        descricao: "Subtrair 2 nos dois lados da equação",
+        gabarito: 'resposta',
+        feedback1: 'x + 2 <b>- 2</b> = 0 <b> - 2</b>',
+        feedback2: 'x = <b>-2</b>',
+        feedback3: '',
+        feedback4: ''
+
+    },
+    {
+        descricao: "Multiplicar 2 nos dois lados da equação",
+        gabarito: '',
+        feedback1: '(x + 2) <b><i>x</i> 2</b> = 0 <b> <i>x</i> 2</b>',
+        feedback2: '<b>2x + 4</b> = <b>0</b>',
+        feedback3: '',
+        feedback4: ''
+
+    },
+    {
+        descricao: "Dividir 2 nos dois lados da equação",
+        gabarito: '',
+        feedback1: '(x + 2) <b>/ 2</b> = 0 <b>/ 2</b>',
+        feedback2: '<b>(x + 2)/4</b> = <b>0</b>',
+        feedback3: '',
+        feedback4: ''
+
+    }
+    ]
+},
+{
+    pergunta: "Como simplificar a equação:",
+    equacao: ' x - 2 = 0',
+    dica: 'Lembre-se você quer fazer o -2 desaparecer!',
+    alternativas: [
+    {
+        descricao: "Somar 2 nos dois lados da equação",
+        gabarito: 'resposta',
+        feedback1: 'x - 2 <b>+ 2</b> = 0 <b> + 2</b>',
+        feedback2: 'x = <b>2</b>',
+        feedback3: '',
+        feedback4: ''
+
+    },
+    {
+        descricao: "Subtrair 2 nos dois lados da equação",
+        gabarito: '',
+        feedback1: 'x - 2 <b>- 2</b> = 0 <b> - 2</b>',
+        feedback2: 'x - <b>4</b> = <b>-2</b>',
+        feedback3: '',
+        feedback4: ''
+
+    },
+    {
+        descricao: "Multiplicar 2 nos dois lados da equação",
+        gabarito: '',
+        feedback1: '(x - 2) <b><i>x</i> 2</b> = 0 <b><i>x</i> 2</b>',
+        feedback2: '<b>2x - 4</b> = <b>0</b>',
+        feedback3: '',
+        feedback4: ''
+
+    },
+    {
+        descricao: "Dividir 2 nos dois lados da equação",
+        gabarito: '',
+        feedback1: '(x - 2) <b>/ 2</b> = 0 <b>/ 2</b>',
+        feedback2: '<b>(x - 2)/2</b> = <b>0</b>',
+        feedback3: '',
+        feedback4: ''
+
+    }
+    ]
+},
+{
+    pergunta: "Como simplificar a equação:",
+    equacao: ' x - 5 = 0',
+    dica: 'Lembre-se você quer fazer o -5 desaparecer!',
+    alternativas: [
+    {
+        descricao: "Subtrair 5 nos dois lados da equação",
+        gabarito: '',
+        feedback1: 'x - 5 <b>- 5</b> = 0 <b> - 5</b>',
+        feedback2: 'x - <b>10</b> = <b>-5</b>',
+        feedback3: '',
+        feedback4: ''
+
+    },
+    {
+        descricao: "Multiplicar 5 nos dois lados da equação",
+        gabarito: '',
+        feedback1: '(x - 5) <b><i>x</i> 5</b> = 0 <b><i>x</i> 5</b>',
+        feedback2: '<b>5x - 25</b> = <b>0</b>',
+        feedback3: '',
+        feedback4: ''
+
+    },
+    {
+        descricao: "Dividir 5 nos dois lados da equação",
+        gabarito: '',
+        feedback1: '(x - 5) <b>/ 5</b> = 0 <b>/ 5</b>',
+        feedback2: '<b>(x - 5)/5</b> = <b>0</b>',
+        feedback3: '',
+        feedback4: ''
+
+    },
+    {
+        descricao: "Somar 5 nos dois lados da equação",
+        gabarito: 'resposta',
+        feedback1: 'x - 5 <b>+ 5</b> = 0 <b> + 5</b>',
+        feedback2: 'x = <b>5</b>',
+        feedback3: '',
+        feedback4: ''
+
+    }
+    ]
+},
+{
+    pergunta: "Como simplificar a equação:",
+    equacao: ' x - 9 = 0',
+    dica: 'Lembre-se você quer fazer o -9 desaparecer!',
+    alternativas: [
+    {
+        descricao: "Subtrair 9 nos dois lados da equação",
+        gabarito: '',
+        feedback1: 'x - 9 <b>- 9</b> = 0 <b> - 9</b>',
+        feedback2: 'x - <b>18</b> = <b>-9</b>',
+        feedback3: '',
+        feedback4: ''
+
+    },
+    {
+        descricao: "Multiplicar 9 nos dois lados da equação",
+        gabarito: '',
+        feedback1: '(x - 9) <b><i>x</i> 9</b> = 0 <b><i>x</i> 9</b>',
+        feedback2: '<b>9x - 81</b> = <b>0</b>',
+        feedback3: '',
+        feedback4: ''
+
+    },
+    {
+        descricao: "Somar 9 nos dois lados da equação",
+        gabarito: 'resposta',
+        feedback1: 'x - 9 <b>+ 9</b> = 0 <b> + 9</b>',
+        feedback2: 'x = <b>9</b>',
+        feedback3: '',
+        feedback4: ''
+
+    },
+    {
+        descricao: "Dividir 9 nos dois lados da equação",
+        gabarito: '',
+        feedback1: '(x - 9) <b>/ 9</b> = 0 <b>/ 9</b>',
+        feedback2: '<b>(x - 9)/9</b> = <b>0</b>',
+        feedback3: '',
+        feedback4: ''
+
+    }
+    ]
+},
+{
+    pergunta: "Como simplificar a equação:",
+    equacao: ' x + 6 = 0',
+    dica: 'Lembre-se você quer fazer o 6 desaparecer!',
+    alternativas: [
+    {
+        descricao: "Somar 6 nos dois lados da equação",
+        gabarito: '',
+        feedback1: 'x + 6 <b>+ 6</b> = 0 <b> + 6</b>',
+        feedback2: 'x + <b>12</b> = <b>6</b>',
+        feedback3: '',
+        feedback4: ''
+
+    },
+    {
+        descricao: "Multiplicar 6 nos dois lados da equação",
+        gabarito: '',
+        feedback1: '(x + 6) <b><i>x</i> 6</b> = 0 <b> <i>x</i> 6</b>',
+        feedback2: '<b>6x + 36</b> = <b>0</b>',
+        feedback3: '',
+        feedback4: ''
+
+    },
+    {
+        descricao: "Subtrair 6 nos dois lados da equação",
+        gabarito: 'resposta',
+        feedback1: 'x + 6 <b>- 6</b> = 0 <b> - 6</b>',
+        feedback2: 'x = <b>-6</b>',
+        feedback3: '',
+        feedback4: ''
+
+    },
+    {
+        descricao: "Dividir 6 nos dois lados da equação",
+        gabarito: '',
+        feedback1: '(x + 6) <b>/ 6</b> = 0 <b>/ 6</b>',
+        feedback2: '<b>(x + 6)/6</b> = <b>0</b>',
+        feedback3: '',
+        feedback4: ''
+
+    }
+    ]
+}
+];
+
+
+var dados = {c : JSON.stringify(questoes1),
+            nivel: 4
+ };
+	$.ajax({
+		type: 'POST',
+		//dataType: 'json',
+		url: 'salvar_questoes.php',
+		async: true,
+		data: dados,
+		success: function(response) {
+			$('body').append(response);
+		}
+	});
+
+
+</script>

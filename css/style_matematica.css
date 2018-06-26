@@ -27,6 +27,10 @@
   border: solid red;
 }
 
+.alternativas-list li b{
+  display: none;
+}
+
 .alternativas-list li {
   width: 50%;
   text-align: center;
@@ -45,6 +49,49 @@
   color:#000;
 }
 
+#feedbacks{
+  display: none;
+  border: solid #00a1ff;
+  padding: 10px;
+  margin-top:5px;
+  width: 75%;
+  margin: 0 auto;
+  background: #fff;
+}
+
+#feedbacks img{
+  width: 105px;
+}
+
+.feedback_negativo{
+  font-size: 16pt;
+  display: none;
+}
+.dica{
+  font-size: 17pt;
+  display: none;
+  color: #007bff !important;
+}
+
+.feedback, .feedback_correto{
+  display: none;
+  font-size: 18pt;
+  margin-bottom: 5px;
+}
+
+.feedback b > b{
+  color: red;
+}
+
+.feedback i, .feedback_correto i {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.feedback_correto b > b{
+  color: blue;
+}
+
 .modal-feedback {
   display: none;
   position: fixed;
@@ -60,11 +107,41 @@
   top: 15vh;
   left: 0;
   right: 0;
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   margin: 0 auto;
   background: #FFFAFA;
 }
+
+#feedbacks_correto{
+  display: none;
+  border: solid #00a1ff;
+  padding: 10px;
+  margin-top:5px;
+  width: 75%;
+  margin: 0 auto;
+  background: #fff;
+}
+
+.efetividade_ataque{
+  position: absolute;
+  left: 410px;
+  top: 0px;
+  font-size: 11pt;
+  /*color: #007bff;*/
+  color: #f50000;
+  font-weight: bold;
+  background: #000;
+  width: 90px;
+  height: 50px;
+  padding: 4px;
+  border-radius: 0px 0px 0px 25px;
+}
+
+.efetividade_ataque p{
+  margin-top: 2px !important;
+}
+
 .modal-feedback .modal-in-feedback header {
   position: relative;
   min-height: 30px;
@@ -77,7 +154,7 @@
 }
 
 .modal-feedback .modal-in-feedback header h2 {
-  font-size: 26px;
+  font-size: 26px !important;
   color: #e9240e;
 }
 
@@ -95,7 +172,7 @@
 
 .modal-in header h2{
   color: #e9240e;
-  margin-top: 15px;
+  margin-top: 2px;
   font-weight: bold;
 }
 
@@ -104,13 +181,16 @@
 }
 
 .modal-in header h3, .modal-feedback .modal-in-feedback header h2{
-  font-size: 20px;
+  font-size: 15px;
   color: #007bff;
   margin-top: 10px;
 }
 
 .modal-out .modal-in header h1#pergunta {
   font-size: 24px;
+}
+.modal-out .modal-in header h1#pergunta p{
+  font-weight: bold;
 }
 
 .modal-feedback .btn{
