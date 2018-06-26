@@ -107,19 +107,29 @@ function randomNum(max, min){
 // build the character UI
 function populateChar(container,character){
   // which img
+
+  container.empty();
+  var captura = '';
   var facing = 'front';
-  var classe = '';
+  var classe = 'inimigo';
   if(character === 'hero'){
     // we see the back of our hero
     // a real hero faces danger
+    classe = '';
     facing = 'back';
   }
+
+  if(classe==='inimigo'){
+    captura = '<img class="pokebola" src="img/pokebola-pegou.gif"/>'
+    +'<p class="capturado">'+gameData[character].name+' Capturado com sucesso! </p>'
+    }
 
   // build the character
   //container.empty();
   container.append('<section class="char col-12">'
     +'<div class="col-6">'
     +'<img class="'+classe+'" src="'+gameData[character].img[facing]+'" alt="'+gameData[character].name+'">'
+    + captura
     +'</div>'
     +'<div class="col-6">'
     +'<aside class="data"><h2>'+gameData[character].name+'</h2>'
@@ -660,7 +670,7 @@ function clearModal(){
   $('.modal-in header').empty();
   $('.modal-in section').empty();
   $('.modal-in footer').empty();
-  setHP();
+  //setHP();
 }
 
 function opcoesPlayerClick(){
@@ -670,29 +680,43 @@ function opcoesPlayerClick(){
     console.log('chegou no click das opcoes');
     switch(opcao){
       case 'opcao_ataque':
-      $('.hover').removeClass('hover');
-      tela = 'ataques';
-      show(['attack-list','voltar']);
-      $('#voltar').addClass('hover');
-      enter_tecla = $('#voltar');
+        $('.hover').removeClass('hover');
+        tela = 'ataques';
+        show(['attack-list','voltar']);
+        $('#voltar').addClass('hover');
+        enter_tecla = $('#voltar');
       break;
       case 'opcao_pokemons':
-      $('.hover').removeClass('hover');
-      tela = 'pokemons';
-      opcoesPokemon();
-      $('#voltar').addClass('hover');
-      enter_tecla = $('#voltar');
+        $('.hover').removeClass('hover');
+        tela = 'pokemons';
+        opcoesPokemon();
+        $('#voltar').addClass('hover');
+        enter_tecla = $('#voltar');
       break;
       case 'opcao_fugir':
-      clearModal();
-      $('.modal-in header').append('<h1>Você fugiu da batalha!</h1><span class="close">x</span>');
-      $('.modal-in section').append('<p>Não desanime!! Na próxima você consegue!');
-      $('.modal-out').slideDown('400');
-      enter_tecla = $('.close');
-      modalControls();
-      renderMap();
+        clearModal();
+        $('.modal-in header').append('<h1>Você fugiu da batalha!</h1><span class="close">x</span>');
+        $('.modal-in section').append('<p>Não desanime!! Na próxima você consegue!');
+        $('.modal-out').slideDown('400');
+        enter_tecla = $('.close');
+        modalControls();
+        renderMap();
       break;
       case 'opcao_pegar':
+        $('.inimigo').hide();
+        $('.pokebola').show();
+         setTimeout(function(){
+          if(gameData.enemy.hp.current <= 250){
+            $('.capturado').show();
+            characters_player.push(gameData.enemy);
+            janelaCapturaPokemon();
+          }else{
+            $('.inimigo').show();
+            $('.pokebola').hide();
+            opcoesShow();
+          }
+        },2000);
+        
       break;
     }
     
@@ -713,6 +737,29 @@ function opcoesPlayerClick(){
   });
 
 }
+
+function janelaCapturaPokemon(){
+   setTimeout(function(){
+      clearModal();
+      $('.modal-in header').append('<h1>Você Pegou o pokemon </h1><span class="close">x</span>');
+      $('.modal-in section').append('<p>Parabéns!</p>');
+      $('.modal-out').slideDown('400');
+      modalControls();
+      renderMap();
+      enter_tecla = $('.close');
+  },2000);
+}
+
+function alertWindowMap(title,msg){
+    clearModal();
+    $('.modal-in header').append('<h1>'+title+'</h1><span class="close">x</span>');
+    $('.modal-in section').append('<p>'+msg+'</p>');
+    $('.modal-out').slideDown('400');
+    enter_tecla = $('.close');
+    modalControls();
+    renderMap();
+}
+
 
 function renderMap(){
   $('#battle').hide();
@@ -811,6 +858,7 @@ function enemySubstractHp(that,index_hero){
   curAttack.avail.remaining--;
   gameData.hero.attacks[index_hero].avail.remaining = curAttack.avail.remaining;
 
+  //console.log('ATAQUE: ' + curAttack.avail.remaining);
   if(curAttack.avail.remaining == 0){
     that.addClass('disabled');
   }

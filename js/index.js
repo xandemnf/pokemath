@@ -251,6 +251,8 @@ window.onload = function() {
 
     verificaAchouPokemon();
 
+    verificaCasa();
+
     /**
      * If player finds the coordinates of pokeball the generate new one, play the sound and update the score
      * ACHOU POKEBOLA
@@ -398,10 +400,19 @@ window.onload = function() {
 
     } 
     else if (e.keyCode == "77" || e.keyCode == "109"){ // M ou m - MUTE
-      $('.mute:first').trigger("click");
+      if(verificaTela()){
+        $('.mute:first').trigger("click");
+      }
     }
      else if (e.keyCode == "83" || e.keyCode == "105"){ // S ou s - salvar
-      $('.salvar_game').trigger("click");
+      if(verificaTela()){
+        $('.salvar_game').trigger("click");
+      }
+    }
+    else if (e.keyCode == "65" || e.keyCode == "97"){ // A ou a - salvar
+      if(verificaTela()){
+        $('.ajuda').trigger("click");
+      }
     }
   };
 
@@ -551,6 +562,27 @@ window.onload = function() {
       //pokemons_position
     }
 
+     function verificaCasa(){
+      var x,y;
+      var carregados = '';
+      y = (player.y * objectSizes) / objectSizes;
+      x = (player.x * objectSizes) / objectSizes;
+      if(y == 6.5 && x == 6){
+         for(var i in characters_player){
+            for(var j in characters){
+              if(characters_player[i].name == characters[j].name){ 
+                carregados = carregados + ' ' + characters[j].name;
+                characters_player[i] = $.extend(true, {}, characters[j]); // copiando
+              }
+            }
+          }
+          pokemonPlayerAtual(); // atualizar player atual
+          alertWindowMap('Pokemons Carregados!', carregados);
+
+        }
+
+      }
+
     $('.mute').click(function(){
       console.log("chegou para audio");
       if(mute === 0){
@@ -625,24 +657,26 @@ window.onload = function() {
             data: dados,
             success: function(response) {
               gameData = JSON.parse(response[0]);
-              alert(response[1]);
+              alertWindowMap('Login realizado',response[1]);
               $('#inicial').hide();
               $('#menu').removeClass('hidden');
               atual = gameData.atual;
               characters_player = gameData.characters;
               gameData.login = $('#inputLogin').val();
-              pokemonPlayerAtual(); // set pokemonPlayerAual
+              pokemonPlayerAtual(); // set pokemonPlayerAtual
               renderMap();
             }
         });
     });
 
      $('.salvar_game').click(function(){
-        gameData.enemy = {};
-        gameData.hero = {};
-        gameData.atual = atual;
-        alert('salvar' + gameData.login);
-        var dados = {c : JSON.stringify(gameData), login : gameData.login};
+        var gameDataSave = [];
+        gameDataSave = $.extend(true, {}, gameData);
+        gameDataSave.enemy = {};
+        gameDataSave.hero = {};
+        gameDataSave.atual = atual;
+        alertWindowMap(gameDataSave.login + ' Salvo','');
+        var dados = {c : JSON.stringify(gameDataSave), login : gameDataSave.login};
           $.ajax({
             type: 'POST',
             //dataType: 'json',
@@ -655,6 +689,20 @@ window.onload = function() {
           });
     });
 
-};
+     $('.ajuda').click(function(){
+        var content = $('<div></div>');
+        content.append('<p>Tutorial</p>'
+          +''
+          );
+        alertWindowMap('Ajuda',)
+     });
 
- 
+     function verificaTela(){
+      if(tela == ''){
+        return 0;
+      }else{
+        return 1;
+      }
+     }
+
+};

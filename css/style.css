@@ -17,7 +17,7 @@
 .mute{
     display: table;
     margin: 0 auto;
-    margin-top: 5px;
+    /* margin-top: 5px;*/
     margin-bottom: 5px;
     cursor: pointer;
     width: 35px;
@@ -32,6 +32,9 @@
     display: block;
     width: 100px;
     margin: 0 auto;
+    float: right;
+    /* right: 111px; */
+    margin-right: 70px;
 }
 
 .volume p{
@@ -42,10 +45,23 @@
   visibility: hidden;
   opacity: 0;
   height: 0;
+
 }
 
 #menu.hidden{
     visibility: hidden;
+    width: 100%;
+    float: left;
+}
+
+#menu{
+    width: 100%;
+    /* float: left; */
+    top: 20px;
+    /* margin-top: 56px; */
+    /* position: relative; */
+    /* display: inline-block; */
+    display: inline-block;
 }
 
 #inicial{
@@ -53,6 +69,7 @@
     margin: 0 auto;
     top: 50px;
     position: relative;
+    text-align: center;
 }
 
 #inicial h1{
@@ -75,12 +92,28 @@
     cursor: pointer;
     width: 100px;
     float: left;
-    left: 90px;
+    right: left;
+    position: relative;
+    text-align: center;
+    top: 7px;
+    left: 57px;
+}
+
+.salvar_game img{
+    width: 35px;
+}
+
+
+.ajuda {
+    cursor: pointer;
+    width: 100px;
+    float: right;
+    right: 135px;
     position: relative;
     text-align: center;
     top: 6px;
 }
 
-.salvar_game img{
+.ajuda img{
     width: 35px;
 }

@@ -28,6 +28,14 @@ strong {
   left: 285px;
 }
 
+.pokebola{
+  display: none;
+}
+
+.capturado{
+  display: none;
+}
+
 .type {
   display: inline-block;
   height: 30px;

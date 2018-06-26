@@ -8,7 +8,7 @@ var pause_map = 0;
 var mute = 0;
 var mainTheme;
 var inimigoAudio;
-var tela = 'mapa';
+var tela = '';
 var enter_tecla;
 characters_player = [];
 questoes = [];

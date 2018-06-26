@@ -44,7 +44,11 @@
       <div class="volume">
         <img src="img/audio-mute.png" id="mute" class="mute hidden"/>
         <img src="img/volume.png" id="som" class="mute"/>
-        <p>Tecla M</p>
+        <p>Mute(M)</p>
+      </div>
+      <div class="ajuda">
+        <img src="img/help.png" />
+        <p>Ajuda(A)</p>
       </div>
     </div>
     <div id="inicial">
