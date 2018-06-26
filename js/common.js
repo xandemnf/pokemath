@@ -10,6 +10,7 @@ var mainTheme;
 var inimigoAudio;
 var tela = 'mapa';
 var enter_tecla;
+characters_player = [];
 questoes = [];
 questoes1 = [];
 questoes2 = [];

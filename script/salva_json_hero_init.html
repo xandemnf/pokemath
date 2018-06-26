@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script src='../js/jquery.min.js'></script>
+
+<script>
+
+
+// the data for the game in play
+  gameData = {
+    step: 1,
+    atual: 0, // pikachu
+    hero: {},
+    enemy: {},
+    characters : [
+         {
+            index: 0,
+            name: "pikachu",
+            type: 'electric',
+            weakness: ['fighting'],
+            resistance: ['steel'],
+            img: {
+            //default: "http://vignette2.wikia.nocookie.net/all-anime-characters/images/7/7b/Cute_pikachu_with_hat_by_mlpochea-d63xlom.png/revision/latest?cb=20150108111832",
+            default: "img/pokemon/Cute_pikachu_with_hat_by_mlpochea-d63xlom.png",
+            //front: "http://rs1263.pbsrc.com/albums/ii631/Pokemon-Vampire-Knight-lover/pikachu_.gif~c200",
+            front: "img/pokemon/pikachu_.gif_c200",
+            //back: "http://vignette4.wikia.nocookie.net/pokemon/images/5/5b/Pikachu_Back_XY.gif/revision/latest?cb=20141009080948"
+            back: "img/pokemon/Pikachu_Back_XY.gif"
+        },
+        hp: {
+            current: 500,
+            total: 500
+        },
+        attacks: [
+        {
+            name: "relâmpago", //thunder jolt
+            hp: randomNum(40,20),
+            avail: {
+                total: 30,
+                remaining: 30
+            },
+            level: 1
+        },
+        {
+            name: "bola elétrica", // electro ball
+            hp: randomNum(60,45),
+            avail: {
+                total: 10,
+                remaining: 10
+            },
+            level: 2
+        },
+        {
+            name: "investida do trovão", // volt tackle
+            hp: randomNum(75,60),
+            avail: {
+                total: 5,
+                remaining: 5
+            },
+            level: 3
+        },
+        {
+            name: "trovão", // thunder crack
+            hp: randomNum(160, 130),
+            avail: {
+                total: 2,
+                remaining: 2
+            },
+            level: 4
+        }
+        ]
+    }
+    ]
+  };
+     
+
+
+var dados = {c : JSON.stringify(gameData)};
+    $.ajax({
+        type: 'POST',
+        //dataType: 'json',
+        url: 'salvar_hero_init.php',
+        async: true,
+        data: dados,
+        success: function(response) {
+            $('body').append(response);
+        }
+    });
+
+
+/////////////////////////////////////////////
+// UTILITY
+/////////////////////////////////////////////
+// RANDOM NUMBER GENERATOR
+// min is optional
+function randomNum(max, min){
+  // generate a random number
+
+  // min not required
+  if(min === undefined || min === '' || min === null){
+    // min default value
+    min = 0;
+}
+
+  // random number, yay
+  return Math.floor(Math.random() * (max - min) + min);
+}
+</script>

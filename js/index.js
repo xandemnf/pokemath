@@ -115,7 +115,8 @@ window.onload = function() {
   };
 
 
-
+  pause_map = 1; // Inicializa o mapa pausado.
+  enter_tecla = $('#entrarLogin');
   /**
    * Holds all the player's info like x and y axis position, his current direction (facing).
    * I have also incuded an object to hold the sprite position of each movement so i can call them
@@ -399,6 +400,9 @@ window.onload = function() {
     else if (e.keyCode == "77" || e.keyCode == "109"){ // M ou m - MUTE
       $('.mute:first').trigger("click");
     }
+     else if (e.keyCode == "83" || e.keyCode == "105"){ // S ou s - salvar
+      $('.salvar_game').trigger("click");
+    }
   };
 
   // MOVE ON TOCH
@@ -606,6 +610,50 @@ window.onload = function() {
       });
     }
 
+    $('#entrarLogin').click(function(){
+        var dados = {login : $('#inputLogin').val()};
+        if($('#inputLogin').val() === ''){
+          $('.login_obrigatorio').show();
+          return;
+        }
+
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: 'hero_init.php',
+            async: true,
+            data: dados,
+            success: function(response) {
+              gameData = JSON.parse(response[0]);
+              alert(response[1]);
+              $('#inicial').hide();
+              $('#menu').removeClass('hidden');
+              atual = gameData.atual;
+              characters_player = gameData.characters;
+              gameData.login = $('#inputLogin').val();
+              pokemonPlayerAtual(); // set pokemonPlayerAual
+              renderMap();
+            }
+        });
+    });
+
+     $('.salvar_game').click(function(){
+        gameData.enemy = {};
+        gameData.hero = {};
+        gameData.atual = atual;
+        alert('salvar' + gameData.login);
+        var dados = {c : JSON.stringify(gameData), login : gameData.login};
+          $.ajax({
+            type: 'POST',
+            //dataType: 'json',
+            url: 'salvar_hero.php',
+            async: true,
+            data: dados,
+            success: function(response) {
+              console.log(response);
+            }
+          });
+    });
 
 };
 

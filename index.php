@@ -9,7 +9,7 @@
   
   <script src="js/common.js"></script>
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  
+
   <link rel="stylesheet" href="css/style.css">
 
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"> -->
@@ -36,20 +36,42 @@
 
   </head>
   <body>
-    <div class="volume">
-      <img src="img/audio-mute.png" id="mute" class="mute hidden"/>
-      <img src="img/volume.png" id="som" class="mute"/>
-      <p>Tecla M</p>
+    <div id="menu" class="hidden">
+      <div class="salvar_game">
+        <img src="img/save.png" />
+        <p>Salvar(S)</p>
+      </div>
+      <div class="volume">
+        <img src="img/audio-mute.png" id="mute" class="mute hidden"/>
+        <img src="img/volume.png" id="som" class="mute"/>
+        <p>Tecla M</p>
+      </div>
     </div>
+    <div id="inicial">
+      <div class="row">
+        <div class="col-sm-3">
+          <img src="img/icon.png">
+        </div>
+        <div class="titulo col-sm-9">
+          <h1>POKEMATH</h1>
+        </div>
+      </div>
+        <div class="form-group">
+          <input type="text" class="form-control" id="inputLogin" placeholder="Login" required/>
+          <p class="login_obrigatorio" style="color:red; display: none; padding-top: 10px;">Campo obrigatório!</p>
+        </div>
+        <button id="entrarLogin" class="btn btn-primary">Entrar</button>
+    </div>
+    
     <div id="battle" style="display:none">
-      
+
       <main>
-        
+
         <section class="stadium">
           <section class="enemy"></section>
           <section class="hero"></section>
         </section>
-        
+
         <ul class="continuar hidden"><li>Continuar</li></ul>
         <ul class="voltar hidden"><li id="voltar" class="hover">Voltar</li></ul>
         <ul class="characters hidden"></ul>
@@ -67,6 +89,7 @@
     <div id="map">
       <canvas id="canvas" width="460" height="460"></canvas>
     </div>
+
     <div class="modal modal-out">
       <div class="modal-in">
         <header></header>

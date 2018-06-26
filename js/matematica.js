@@ -114,16 +114,19 @@ function alternativasClick(that, index_hero){
 	    	$('.modal').hide();
 	    	enter_tecla = $('#botao');
 	    	okClick(that,index_hero);
-	    }else{
+	    }else{ // errou pergunta
 	    	if($(this).hasClass('disabled')){
 	    		$(this).addClass('hover');
 	    		return;
 	    	}
+	    	enter_tecla = $('.alternativa').first(); // volta a selecao pro primeiro.
+    		enter_tecla.addClass('hover');
+	    	
 	    	curAttack.hp = Math.floor(curAttack.hp*0.5);
 
 	    	//$(this).removeClass('alternativa');
 	    	//$(this).addClass('disabled');
-	    	$(this).addClass('hover');
+	    	//$(this).addClass('hover');
 	    	//clearModalFeedback();
 
 	    	feedbackQuestao(this,'');

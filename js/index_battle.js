@@ -22,13 +22,12 @@
 var music = {},
 typeSprite = '',
 types = [],
-gameData = {}
+gameData = {},
 attackName = '',
 curAttack = {},
 randInt = 0,
 enemyAttack = {},
 characters = [],
-characters_player = [],
 defendProgressInt = null,
 defendProgressComplete = 0,
 progressInt = null,
@@ -58,6 +57,7 @@ function buildVars(){
   // the data for the game in play
   gameData = {
     step: 1,
+    atual: pikachu,
     hero: {},
     enemy: {}
   }
@@ -235,12 +235,12 @@ function initGame(){
 
 function setCharacters(characters_json){
   characters = JSON.parse(characters_json);
-  characters_player =  JSON.parse(characters_json);
-  if($.isEmptyObject(gameData.hero)){
+  //characters_player =  JSON.parse(characters_json);
+  /*if($.isEmptyObject(gameData.hero)){
     pokemonPlayerAtual();
-  }
+  }*/
   
-  enemyFind();
+  //enemyFind();
 } 
 
 function ajaxCharacters(){
@@ -452,7 +452,7 @@ function attackEffect(that,index_hero){
    console.log('Ataque '+ curAttack.hp);
    var efetividade_attack = curAttack.hp;
    console.log('Efetividade '+ efetividade_attack);
-    gameData.enemy.hp.current -= efetividade_attack;
+   gameData.enemy.hp.current -= efetividade_attack;
    if(index_hero > 0){
       //gameData.hero.attacks[index_hero] = curAttack;
     }
