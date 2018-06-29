@@ -12,19 +12,19 @@ function equacao(that,index_hero){
 	var questao_index = randomNum(questoes.length); 
 	questao = questoes[questao_index];
 	clearModal1();
-	$('.modal-in header').append('<h1 id="pergunta">'+questao.pergunta+
+	$('#modal-principal .modal-in header').append('<h1 id="pergunta">'+questao.pergunta+
 		'<p>' + questao.equacao + '</p></h1>');
-	$('.modal-in header').append('</div> <div class="efetividade_ataque">Efetividade Ataque: <p>'+Math.floor(curAttack.hp)+'</p></div>');
-	$('.modal-in header').append('<div id="feedbacks">'
+	$('#modal-principal .modal-in header').append('</div> <div class="efetividade_ataque">Efetividade Ataque: <p>'+Math.floor(curAttack.hp)+'</p></div>');
+	$('#modal-principal .modal-in header').append('<div id="feedbacks">'
 		+'<p id="feedback1" class="feedback"></p>'
 		+'<p id="feedback2" class="feedback"></p>'
 		+'<p id="feedback3" class="feedback"></p>'
 		+'<p id="feedback4" class="feedback"></p>'
 		+'<img src="img/pokemon/feedback-negativo.gif" />'
 		+'</div>');
-	$('.modal-in header').append('<h2 class="feedback_negativo">'+msg_feedback_negativo+'</h2>');
-	$('.modal-in header').append('<h2 class="dica">'+questao.dica+'</h2>');
-	$('.modal-in section').append(
+	$('#modal-principal .modal-in header').append('<h2 class="feedback_negativo">'+msg_feedback_negativo+'</h2>');
+	$('#modal-principal .modal-in header').append('<h2 class="dica">'+questao.dica+'</h2>');
+	$('#modal-principal .modal-in section').append(
 		'<ul class="alternativas-list">'
 		+'<li id="'+questao.alternativas[0].gabarito+'" class="alternativa">'
 		+ questao.alternativas[0].descricao 
@@ -55,12 +55,13 @@ function equacao(that,index_hero){
 		+'<b>'+ questao.alternativas[3].feedback4 +'</b>'
 		+'</li>'//end li
 		+'</ul>');
-	$('.modal-out').show();
+	$('#modal-principal .modal-out').show();
     //$('#battle').hide();
     //$('#canvas').show();
     //modalControls();
     tela = "alternativas";
     enter_tecla = $('.alternativa').first();
+    console.log(enter_tecla);
     enter_tecla.addClass('hover');
     alternativasClick(that,index_hero);
 	/*switch(level){
@@ -77,10 +78,10 @@ function equacao(that,index_hero){
 }
 
 function clearModal1(){
-	$('.modal-in header').empty();
+	$('#modal-principal .modal-in header').empty();
 	console.log('Ataque alternativa gameData.hero '+ gameData.hero.attacks[0].hp);
-	$('.modal-in section').empty();
-	$('.modal-in footer').empty();
+	$('#modal-principal .modal-in section').empty();
+	$('#modal-principal .modal-in footer').empty();
 }
 
 function clearModalFeedback(){
@@ -111,7 +112,7 @@ function alternativasClick(that, index_hero){
 	    	$('.modal-in-feedback section').append('<button id="botao" class="btn btn-default">Ok</button>');
 	    	feedbackQuestao(this,'_correto');
 	    	$('.modal-feedback').show();
-	    	$('.modal').hide();
+	    	$('#modal-principal .modal').hide();
 	    	enter_tecla = $('#botao');
 	    	okClick(that,index_hero);
 	    }else{ // errou pergunta
@@ -134,7 +135,7 @@ function alternativasClick(that, index_hero){
 	    	
 	    	$('.feedback_negativo').delay(delay).fadeIn(200);
 	    	$('.dica').delay(delay+600).fadeIn(200);
-	    	//$('.modal-in header h2').addClass('hidden');
+	    	//$('#modal-principal .modal-in header h2').addClass('hidden');
 	    	$('.efetividade_ataque p').text(curAttack.hp);
 	    }
 	    console.log('Ataque alternativa gameData.hero '+ gameData.hero.attacks[0].hp);

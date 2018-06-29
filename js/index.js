@@ -571,11 +571,14 @@ window.onload = function() {
          for(var i in characters_player){
             for(var j in characters){
               if(characters_player[i].name == characters[j].name){ 
+                var index_pokemon = characters_player[i].index; // guarda index pokemon
                 carregados = carregados + ' ' + characters[j].name;
                 characters_player[i] = $.extend(true, {}, characters[j]); // copiando
+                characters_player[i].index = index_pokemon; // atualizando index pokemon
               }
             }
           }
+          stopMoveTouchAuto();
           pokemonPlayerAtual(); // atualizar player atual
           alertWindowMap('Pokemons Carregados!', carregados);
 
@@ -690,11 +693,22 @@ window.onload = function() {
     });
 
      $('.ajuda').click(function(){
-        var content = $('<div></div>');
-        content.append('<p>Tutorial</p>'
-          +''
+        var content = $('<div class="tutorial"></div>');
+        content.append(''
+          +'<h2>Encontrando Pokemons</h2>'
+          +'<p>Para encontrar um pokemon basta caminhar pelo mato em frente a casa.</p>'
+          +'<h2>Ataque</h2>'
+          +'<p>Escolha um dentro os 4 ataques e resolva os problemas para que o ataque tenha efeito no pokemon (Cada erro diminui a efetividade do ataque).</p>'
+          +'<h2>Pegar</h2>'
+          +'<p>Selecione essa opção caso queira capturar o pokemon (nem sempre você conseguirá capturar o pokemon, depende da quantidade de vida do pokemon).</p>'
+          +'<h2>Fugir</h2>'
+          +'<p>Selecione essa opção caso queira fugir da batalha.</p>'
+          +'<h2>Pokemons</h2>'
+          +'<p>Selecione essa opção para visualizar e escolher um dos seus pokemons pra luta.</p>'
+          +'<h2>Recarregar vida e poderes pokemons</h2>'
+          +'<p>Para recarregar a vida e os poderes de todos seus pokemons, basta tentar entrar na casa.</p>'
           );
-        alertWindowMap('Ajuda',)
+        alertWindowMap('Ajuda',content);
      });
 
      function verificaTela(){

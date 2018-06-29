@@ -53,10 +53,10 @@
     </div>
     <div id="inicial">
       <div class="row">
-        <div class="col-sm-3">
+        <div class="pokebola_inicial">
           <img src="img/icon.png">
         </div>
-        <div class="titulo col-sm-9">
+        <div class="titulo">
           <h1>POKEMATH</h1>
         </div>
       </div>
@@ -93,13 +93,24 @@
     <div id="map">
       <canvas id="canvas" width="460" height="460"></canvas>
     </div>
-
+    <div id="modal-principal">
+      <div class="modal modal-out">
+        <div class="modal-in">
+          <header></header>
+          <section></section>
+          <footer></footer>
+        </div>
+      </div>
+    </div>
+    
+    <div id="modal_aux">
     <div class="modal modal-out">
       <div class="modal-in">
         <header></header>
         <section></section>
         <footer></footer>
       </div>
+    </div>
     </div>
 
     <div class="modal-feedback">
@@ -109,6 +120,8 @@
         <footer></footer>
       </div>
     </div>
+
+    <div style="display: none" class="aux_close"></div>
 
     <script src='js/jquery.min.js'></script>
     <script src="js/index.js"></script>

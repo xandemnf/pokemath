@@ -295,8 +295,14 @@ initGame();
 
 
 function pokemonPlayerAtual(){
-
-  gameData.hero = characters_player[atual];
+  for(var i in characters_player){
+    if(characters_player[i].index == atual){
+      // find and save your chosen hero's data
+      gameData.hero = characters_player[i];
+      /*gameData.hero.index = i;
+      atual = gameData.hero.index;*/
+    }
+  }
   
   // build my hero
   populateChar($('.stadium .hero'), 'hero');
@@ -371,6 +377,7 @@ function enemyFind(){
             $(".characters").append('<li id="pokemon_'+characters_player[i].name+'" class="char-container">'
               +'<img src="'+characters_player[i].img.default+'" alt="'+characters_player[i].name+'">'
               +'<h2>'+characters_player[i].name+'</h2>'
+              +'<p>'+characters_player[i].index+'</p>'
               +'<span class="type '+characters_player[i].type+'"></span></lis>')
           }
 
@@ -386,15 +393,14 @@ function characterChoice(){
     // you have chosen a character
     console.log('chegou choice');
     // your chosen character name
-    var name = $(this).children('h2').text().toLowerCase();
-
+    atual = $(this).children('p').text();
         // step 1: choose your hero
         for(var i in characters_player){
-          if(characters_player[i].name === name){
+          if(characters_player[i].index == atual){
             // find and save your chosen hero's data
             gameData.hero = characters_player[i];
-            gameData.hero.index = i;
-            atual = gameData.hero.index;
+            /*gameData.hero.index = i;
+            atual = gameData.hero.index;*/
           }
         }
         $('.stadium .hero').empty();
@@ -667,9 +673,9 @@ function modalControls(){
 }
 
 function clearModal(){
-  $('.modal-in header').empty();
-  $('.modal-in section').empty();
-  $('.modal-in footer').empty();
+  $('#modal-principal .modal-in header').empty();
+  $('#modal-principal .modal-in section').empty();
+  $('#modal-principal .modal-in footer').empty();
   //setHP();
 }
 
@@ -695,9 +701,9 @@ function opcoesPlayerClick(){
       break;
       case 'opcao_fugir':
         clearModal();
-        $('.modal-in header').append('<h1>Você fugiu da batalha!</h1><span class="close">x</span>');
-        $('.modal-in section').append('<p>Não desanime!! Na próxima você consegue!');
-        $('.modal-out').slideDown('400');
+        $('#modal-principal .modal-in header').append('<h1>Você fugiu da batalha!</h1><span class="close">x</span>');
+        $('#modal-principal .modal-in section').append('<p>Não desanime!! Na próxima você consegue!');
+        $('#modal-principal .modal-out').slideDown('400');
         enter_tecla = $('.close');
         modalControls();
         renderMap();
@@ -706,8 +712,15 @@ function opcoesPlayerClick(){
         $('.inimigo').hide();
         $('.pokebola').show();
          setTimeout(function(){
-          if(gameData.enemy.hp.current <= 250){
+          if(characters_player.length == 6){
+            alertWindowMap('Você não tem espaço para novos pokemons', '');
+            $('.inimigo').show();
+            $('.pokebola').hide();
+            enter_tecla = $('.aux_close');
+          }
+          else if(gameData.enemy.hp.current <= 250){
             $('.capturado').show();
+            gameData.enemy.index = characters_player.length;
             characters_player.push(gameData.enemy);
             janelaCapturaPokemon();
           }else{
@@ -715,12 +728,19 @@ function opcoesPlayerClick(){
             $('.pokebola').hide();
             opcoesShow();
           }
-        },2000);
+        },3000);
         
       break;
     }
     
   });
+
+  $('.aux_close').click(function(){
+    $('#modal_aux .close').trigger('click');
+    //alert('chegou');
+    opcoesShow();
+  });
+
   $('.voltar').click(function(){
     opcoesShow();
     
@@ -728,9 +748,9 @@ function opcoesPlayerClick(){
 
   $('.continuar').click(function(){
     clearModal();
-    $('.modal-in header').append('<h1>Você Ganhou </h1><span class="close">x</span>');
-    $('.modal-in section').append('<p>Parabéns!</p>');
-    $('.modal-out').slideDown('400');
+    $('#modal-principal .modal-in header').append('<h1>Você Ganhou </h1><span class="close">x</span>');
+    $('#modal-principal .modal-in section').append('<p>Parabéns!</p>');
+    $('#modal-principal .modal-out').slideDown('400');
     modalControls();
     renderMap();
     enter_tecla = $('.close');
@@ -741,9 +761,9 @@ function opcoesPlayerClick(){
 function janelaCapturaPokemon(){
    setTimeout(function(){
       clearModal();
-      $('.modal-in header').append('<h1>Você Pegou o pokemon </h1><span class="close">x</span>');
-      $('.modal-in section').append('<p>Parabéns!</p>');
-      $('.modal-out').slideDown('400');
+      $('#modal-principal .modal-in header').append('<h1>Você Pegou o pokemon </h1><span class="close">x</span>');
+      $('#modal-principal .modal-in section').append('<p>Parabéns!</p>');
+      $('#modal-principal .modal-out').slideDown('400');
       modalControls();
       renderMap();
       enter_tecla = $('.close');
@@ -751,13 +771,17 @@ function janelaCapturaPokemon(){
 }
 
 function alertWindowMap(title,msg){
-    clearModal();
-    $('.modal-in header').append('<h1>'+title+'</h1><span class="close">x</span>');
-    $('.modal-in section').append('<p>'+msg+'</p>');
-    $('.modal-out').slideDown('400');
+   
+    $('#modal_aux .modal-in header').empty();
+    $('#modal_aux .modal-in section').empty();
+    $('#modal_aux .modal-in footer').empty();
+
+    $('#modal_aux .modal-in header').append('<h1>'+title+'</h1><span class="close">x</span>');
+    $('#modal_aux .modal-in section').append(msg);
+    $('#modal_aux .modal-out').slideDown('400');
     enter_tecla = $('.close');
     modalControls();
-    renderMap();
+    //alarrenderMap();
 }
 
 
@@ -812,16 +836,16 @@ function show(e){
 function heroDied(){
   clearModal();
 
-  $('.modal-in header').append('<h1>'+ gameData.hero.name +' desmaiou! :( </h1><span class="close">x</span>');
-  $('.modal-in section').append('<p>Não desanime!! Escolha outro pokemon e continue lutando!');
-  $('.modal-out').slideDown('400');
+  $('#modal-principal .modal-in header').append('<h1>'+ gameData.hero.name +' desmaiou! :( </h1><span class="close">x</span>');
+  $('#modal-principal .modal-in section').append('<p>Não desanime!! Escolha outro pokemon e continue lutando!');
+  $('#modal-principal .modal-out').slideDown('400');
   enter_tecla = $('.close');
   tela = 'hero_died'; // indica que ao clicar close vai para tela de opcoes
     //$('#battle').hide();
     //$('#canvas').show();
   modalControls();
  // $('#pokemon_'+gameData.hero.name).remove(); 
-  characters_player.splice(gameData.hero.index, 1); //Remove o pokemon da lista
+  //characters_player.splice(gameData.hero.index, 1); //Remove o pokemon da lista
   gameData.hero.hp.current = 0;
   //opcoesPokemon();
   //opcoesShow();

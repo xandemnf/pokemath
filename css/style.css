@@ -38,7 +38,7 @@
 }
 
 .volume p{
- text-align: center;
+   text-align: center;
 }
 
 .mute.hidden {
@@ -55,13 +55,25 @@
 }
 
 #menu{
-    width: 100%;
+    width: 600px;
     /* float: left; */
-    top: 20px;
+    /* top: 20px; */
     /* margin-top: 56px; */
-    /* position: relative; */
+    position: relative;
     /* display: inline-block; */
-    display: inline-block;
+    display: table;
+    margin: 0 auto;
+}
+
+.tutorial h2{
+    font-size: 14pt;
+    text-align: left;
+    font-weight: bold;
+    padding-top: 17px;
+}
+
+.tutorial p{
+    text-align: justify;
 }
 
 #inicial{
@@ -72,12 +84,18 @@
     text-align: center;
 }
 
+#inicial .pokebola_inicial{
+    margin-left: 25px;
+}
+
 #inicial h1{
-   font-size: 35pt;
+ font-size: 35pt;
 }
 
 #inicial .titulo{
+    position: relative;
     top: 25px;
+    margin-left: 20px;
 }
 
 #inicial img{
@@ -86,6 +104,7 @@
 
 #inicial .row div{
     float: left;
+    width: 110px;
 }
 
 .salvar_game{
@@ -108,7 +127,7 @@
     cursor: pointer;
     width: 100px;
     float: right;
-    right: 135px;
+    right: 85px;
     position: relative;
     text-align: center;
     top: 6px;
